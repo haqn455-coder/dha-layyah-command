@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>DHA Layyah — CEO Command Center</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -154,21 +154,370 @@
       }
     }
 
+  
+    /* =========================================================
+       EXECUTIVE MOBILE APP-SHELL — DEEP UX PASS
+       Designed for Android mobile surfaces up to small tablets.
+       ========================================================= */
+    :root {
+      --app-max: 860px;
+      --app-green: #059669;
+      --app-bg: #081120;
+      --app-panel: #18253a;
+      --app-line: rgba(148,163,184,.18);
+    }
+    html {
+      background: var(--app-bg);
+      overflow-x: hidden;
+    }
+    body {
+      width: 100%;
+      max-width: 100%;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(16,185,129,.08), transparent 34%),
+        linear-gradient(180deg,#0a1324 0%,#081120 100%);
+      padding-bottom: calc(88px + env(safe-area-inset-bottom));
+    }
+    .app-main {
+      max-width: var(--app-max) !important;
+      min-height: calc(100dvh - 88px);
+    }
+    header > div {
+      max-width: var(--app-max) !important;
+    }
+    .gov-brand-mark,
+    .letter-gov-mark {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(16,185,129,.28);
+      box-shadow: 0 8px 22px rgba(0,0,0,.25);
+    }
+    .gov-brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      padding: 5px;
+    }
+    .letter-gov-mark {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      padding: 5px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: none;
+      border-color: #cbd5e1;
+    }
+    .gov-brand-mark img,
+    .letter-gov-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .gov-logo-fallback {
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      border-radius: inherit;
+      background: #047857;
+      color: white;
+      font-weight: 900;
+      font-size: .78rem;
+      letter-spacing: .04em;
+    }
+    .gov-logo-fallback.light {
+      background: #ecfdf5;
+      color: #065f46;
+    }
+    .prototype-stamp {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid #f59e0b;
+      color: #92400e;
+      background: #fffbeb;
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    /* Balanced navigation: 3 items row 1 + 2 items row 2 */
+    @media (max-width: 900px) {
+      body {
+        font-size: 17px;
+        line-height: 1.56;
+      }
+      header {
+        padding: 12px 13px !important;
+      }
+      header h1 {
+        font-size: 1.08rem !important;
+        line-height: 1.3rem !important;
+      }
+      .app-main {
+        width: 100% !important;
+        max-width: none !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        margin-top: 12px !important;
+        padding-bottom: 8px;
+      }
+      .glass-card {
+        border-radius: 16px;
+        background: linear-gradient(180deg,#1c2a40 0%,#18253a 100%);
+        border-color: var(--app-line);
+        box-shadow: 0 8px 24px rgba(0,0,0,.16);
+      }
+      .text-xs {
+        font-size: .86rem !important;
+        line-height: 1.28rem !important;
+      }
+      .text-sm {
+        font-size: .98rem !important;
+        line-height: 1.42rem !important;
+      }
+      .text-base {
+        font-size: 1.10rem !important;
+        line-height: 1.52rem !important;
+      }
+      .text-lg {
+        font-size: 1.24rem !important;
+        line-height: 1.6rem !important;
+      }
+      .text-2xl {
+        font-size: 1.82rem !important;
+        line-height: 2.05rem !important;
+      }
+      .grid.grid-cols-2.gap-3 {
+        gap: 11px !important;
+      }
+      .grid.grid-cols-2.gap-3 > .glass-card {
+        padding: 15px !important;
+        min-height: 116px;
+      }
+
+      .executive-tabs {
+        display: grid !important;
+        grid-template-columns: repeat(6,minmax(0,1fr)) !important;
+        gap: 9px !important;
+        width: 100%;
+        overflow: visible !important;
+        padding: 1px 0 4px !important;
+      }
+      .executive-tabs > button {
+        grid-column: span 2;
+        width: 100%;
+        min-width: 0;
+        min-height: 64px;
+        padding: 9px 7px !important;
+        white-space: normal !important;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px !important;
+        text-align: center;
+        font-size: .88rem !important;
+        line-height: 1.08rem !important;
+        border-radius: 13px;
+        position: relative;
+      }
+      .executive-tabs > button:nth-child(4),
+      .executive-tabs > button:nth-child(5) {
+        grid-column: span 3;
+      }
+      .executive-tabs > button span {
+        white-space: normal !important;
+      }
+      .executive-tabs > button > span:last-child.bg-red-500 {
+        position: absolute;
+        top: 5px;
+        right: 6px;
+        margin: 0 !important;
+        min-height: 0;
+        padding: 2px 6px !important;
+        font-size: .68rem !important;
+        line-height: .9rem !important;
+      }
+      .executive-tabs > button i {
+        font-size: 1.05rem;
+      }
+
+      #view-radar .glass-card,
+      #view-biometric .glass-card,
+      #view-cm-squad .glass-card,
+      #view-vlink .glass-card,
+      #view-dispatch .glass-card {
+        padding: 16px !important;
+      }
+      #view-radar button,
+      #view-biometric button,
+      #view-cm-squad button,
+      #view-vlink button,
+      #view-dispatch button,
+      #view-radar a,
+      #view-biometric a,
+      #view-cm-squad a,
+      #view-vlink a,
+      #view-dispatch a {
+        min-height: 50px;
+        font-size: .92rem !important;
+      }
+
+      /* Mobile letter becomes a real app bottom-sheet instead of a clipped desktop card */
+      .letter-modal {
+        align-items: flex-end !important;
+        padding: 0 !important;
+      }
+      .letter-sheet {
+        width: 100% !important;
+        max-width: none !important;
+        max-height: 94dvh !important;
+        border-radius: 24px 24px 0 0 !important;
+        padding: 22px 18px calc(20px + env(safe-area-inset-bottom)) !important;
+        overflow-x: hidden !important;
+      }
+      .letter-sheet h2 {
+        font-size: 1.22rem !important;
+        line-height: 1.5rem !important;
+      }
+      .letter-sheet h3,
+      .letter-sheet p,
+      .letter-sheet #letterContent,
+      .letter-sheet #letterRecipient,
+      .letter-sheet #letterSubject {
+        overflow-wrap: anywhere;
+      }
+      .letter-sheet .text-xs {
+        font-size: .84rem !important;
+        line-height: 1.25rem !important;
+      }
+      .letter-sheet .text-sm {
+        font-size: 1rem !important;
+        line-height: 1.55rem !important;
+      }
+      .letter-meta {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        align-items: start !important;
+      }
+      .letter-meta > span:last-child {
+        text-align: right;
+      }
+      .letter-signature {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        align-items: end !important;
+      }
+      .letter-signature > div:last-child {
+        text-align: right !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .gov-brand-mark {
+        width: 48px;
+        height: 48px;
+      }
+      header .space-x-3 > :not([hidden]) ~ :not([hidden]) {
+        margin-left: .6rem !important;
+      }
+      .letter-meta {
+        grid-template-columns: 1fr !important;
+        gap: 3px;
+      }
+      .letter-meta > span:last-child {
+        text-align: left;
+      }
+      .letter-signature {
+        grid-template-columns: 1fr !important;
+      }
+      .letter-signature > div:last-child {
+        text-align: left !important;
+      }
+    }
+
+    @media (min-width: 901px) {
+      body { padding-bottom: 28px; }
+      .app-main { max-width: var(--app-max) !important; }
+      .executive-tabs {
+        display: grid !important;
+        grid-template-columns: repeat(5,minmax(0,1fr)) !important;
+        gap: 9px !important;
+      }
+    }
+
+    /* Persistent app navigation gives the page a native-app frame on mobile */
+    .mobile-bottom-nav {
+      display: none;
+    }
+    @media (max-width: 900px) {
+      .mobile-bottom-nav {
+        position: fixed;
+        z-index: 45;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: grid;
+        grid-template-columns: repeat(5,minmax(0,1fr));
+        padding: 7px 8px calc(7px + env(safe-area-inset-bottom));
+        background: rgba(7,15,28,.96);
+        border-top: 1px solid rgba(148,163,184,.18);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 -10px 30px rgba(0,0,0,.25);
+      }
+      .mobile-bottom-nav button {
+        min-width: 0;
+        min-height: 58px;
+        border-radius: 12px;
+        color: #94a3b8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        font-size: .68rem;
+        line-height: .88rem;
+        font-weight: 700;
+        padding: 5px 3px;
+      }
+      .mobile-bottom-nav button i {
+        font-size: 1rem;
+      }
+      .mobile-bottom-nav button.mobile-nav-active {
+        color: #6ee7b7;
+        background: rgba(5,150,105,.14);
+      }
+    }
+
   </style>
 </head>
 <body class="min-h-screen pb-12">
 
   <!-- TOP APP BAR -->
   <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 px-4 py-3.5 shadow-md">
-    <div class="max-w-xl mx-auto flex items-center justify-between">
+    <div class="max-w-3xl w-full mx-auto flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-11 h-11 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-xl shadow-lg shadow-emerald-950 flex-shrink-0">
-          <i class="fa-solid fa-star-and-crescent"></i>
+        <div class="gov-brand-mark flex-shrink-0" aria-label="Government of Punjab emblem">
+          <img src="https://beta.hrmis.pshealth.punjab.gov.pk/assets/img/govlogoUpdated.png"
+               alt="Government of Punjab emblem"
+               referrerpolicy="no-referrer"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="gov-logo-fallback" style="display:none">GOP</div>
         </div>
         <div>
           <div class="flex items-center space-x-2">
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800/60">Govt of Punjab</span>
-            <span class="text-xs text-slate-400">PITB Synced</span>
+            <span class="text-xs text-slate-400">Health &amp; Population Dept</span>
           </div>
           <h1 class="text-base sm:text-lg font-bold text-white tracking-tight mt-0.5">District Health Authority, Layyah</h1>
         </div>
@@ -184,7 +533,7 @@
   </header>
 
   <!-- MAIN CONTAINER (NATURAL MOBILE WIDTH) -->
-  <main class="max-w-xl mx-auto px-4 mt-4 space-y-4">
+  <main class="app-main max-w-3xl w-full mx-auto px-4 mt-4 space-y-4">
 
     <!-- METRICS CARDS (BOLD, HIGH-VISIBILITY GRID) -->
     <div class="grid grid-cols-2 gap-3">
@@ -588,9 +937,28 @@
 
   </main>
 
+
+  <nav class="mobile-bottom-nav" aria-label="Executive navigation">
+    <button type="button" data-mobile-tab="radar" onclick="switchTab('radar')" class="mobile-nav-active">
+      <i class="fa-solid fa-tower-broadcast"></i><span>Radar</span>
+    </button>
+    <button type="button" data-mobile-tab="biometric" onclick="switchTab('biometric')">
+      <i class="fa-solid fa-fingerprint"></i><span>Biometric</span>
+    </button>
+    <button type="button" data-mobile-tab="cm-squad" onclick="switchTab('cm-squad')">
+      <i class="fa-solid fa-person-military-pointing"></i><span>CM Squad</span>
+    </button>
+    <button type="button" data-mobile-tab="vlink" onclick="switchTab('vlink')">
+      <i class="fa-solid fa-shield-halved"></i><span>V-Link</span>
+    </button>
+    <button type="button" data-mobile-tab="dispatch" onclick="switchTab('dispatch')">
+      <i class="fa-solid fa-signature"></i><span>Vault</span>
+    </button>
+  </nav>
+
   <!-- MODAL: OFFICIAL SIGNED SARKARI LETTERHEAD -->
-  <div id="letterModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 hidden">
-    <div class="bg-white text-slate-900 rounded-2xl max-w-lg w-full p-5 sm:p-7 max-h-[90vh] overflow-y-auto shadow-2xl relative">
+  <div id="letterModal" class="letter-modal fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 hidden">
+    <div class="letter-sheet bg-white text-slate-900 rounded-2xl max-w-lg w-full p-5 sm:p-7 max-h-[90vh] overflow-y-auto shadow-2xl relative">
       
       <!-- Close Button -->
       <button onclick="closeLetterModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-lg transition-all">
@@ -599,16 +967,21 @@
 
       <!-- OFFICIAL GOVERNMENT LETTERHEAD -->
       <div class="text-center border-b-2 border-slate-900 pb-3">
-        <div class="inline-flex items-center justify-center w-11 h-11 rounded-full border border-slate-400 mb-1">
-          <i class="fa-solid fa-star-and-crescent text-2xl text-emerald-800"></i>
+        <div class="letter-gov-mark mb-2" aria-label="Government of Punjab emblem">
+          <img src="https://beta.hrmis.pshealth.punjab.gov.pk/assets/img/govlogoUpdated.png"
+               alt="Government of Punjab emblem"
+               referrerpolicy="no-referrer"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="gov-logo-fallback light" style="display:none">GOP</div>
         </div>
-        <h3 class="text-xs font-bold tracking-widest uppercase text-slate-600">Primary &amp; Secondary Healthcare Department</h3>
+        <h3 class="text-xs font-bold tracking-widest uppercase text-slate-600">Health &amp; Population Department</h3>
         <h2 class="text-base sm:text-lg font-black uppercase text-slate-900 tracking-tight">District Health Authority, Layyah</h2>
         <p class="text-xs text-slate-500">Office of the Chief Executive Officer • District Complex, Layyah</p>
+        <div class="prototype-stamp">PROTOTYPE — NOT AN OFFICIAL DISPATCH</div>
       </div>
 
       <!-- DISPATCH METADATA -->
-      <div class="flex justify-between items-center text-xs font-semibold text-slate-700 mt-3 border-b border-slate-200 pb-2">
+      <div class="letter-meta flex justify-between items-center text-xs font-semibold text-slate-700 mt-3 border-b border-slate-200 pb-2">
         <span id="letterDispatchNo">No. DHA/LY/2026/895-B</span>
         <span id="letterDate">Dated Layyah, the 24th September, 2026</span>
       </div>
@@ -628,7 +1001,7 @@
       </div>
 
       <!-- SIGNATURE STAMP BLOCK -->
-      <div class="mt-6 pt-3 flex items-end justify-between border-t border-slate-200">
+      <div class="letter-signature mt-6 pt-3 flex items-end justify-between border-t border-slate-200">
         <div class="flex items-center space-x-2 text-xs text-slate-500">
           <i class="fa-solid fa-qrcode text-3xl text-slate-800"></i>
           <div>
@@ -677,7 +1050,7 @@
       for (var j = 0; j < tabs.length; j++) {
         var btn = document.getElementById('tab-' + tabs[j]);
         if (btn) {
-          btn.className = 'px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white whitespace-nowrap flex items-center space-x-2 border border-slate-700';
+          btn.className = 'px-3 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 border border-slate-700';
         }
       }
 
@@ -686,10 +1059,19 @@
 
       var targetTab = document.getElementById('tab-' + tab);
       if (targetTab) {
-        targetTab.className = 'px-4 py-2.5 rounded-xl tab-active whitespace-nowrap flex items-center space-x-2';
+        targetTab.className = 'px-3 py-2.5 rounded-xl tab-active flex items-center justify-center gap-2';
       }
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      var mobileButtons = document.querySelectorAll('[data-mobile-tab]');
+      for (var k = 0; k < mobileButtons.length; k++) {
+        mobileButtons[k].classList.toggle('mobile-nav-active', mobileButtons[k].getAttribute('data-mobile-tab') === tab);
+      }
+
+      var main = document.querySelector('.app-main');
+      if (main) {
+        var top = main.getBoundingClientRect().top + window.pageYOffset - 76;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      }
     }
 
     function openLetterModal(type) {
