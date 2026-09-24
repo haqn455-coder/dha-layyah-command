@@ -1,13 +1,7 @@
-# District Health Authority Layyah — CEO Executive Command Center
+# DHA Layyah CEO Executive OS — synthetic prototype
 
-Interactive Single-Page Executive Command Portal for CEO Health.
-Deployable instantly to Vercel, Netlify, or Firebase Hosting.
+Single-page GitHub Pages demo. All figures, incidents, orders, dates and facilities shown in the interface are illustrative. It has no government data integration, authentication, signed orders or official dispatch.
 
-## Features Included
-1. Morning Red-Flag Radar (8:30 AM Brief)
-   - Real THQ Hospital Chaubara (ASV Zero Stock Alert)
-   - Real Maryam Nawaz Health Clinic (MNHC) 14/TDK (Absenteeism Alert)
-   - CM Complaint Cell #4823 (Karor Lal Esan SLA Warning)
-   - THQ Hospital Fateh Pur (Operational Status)
-2. Lahore V-Link Meeting Defense Mode (Live KPI talking points against Secretary Health targets)
-3. Biometric Virtual Signed Order Dispatch (Official Govt Letterhead + 1-Tap WhatsApp notice)
+V1.1 presents Attendance & Facility Readiness first, followed by CEO Action Queue, External Monitoring & Inspection, Provincial Review Brief, and Orders & Approvals. WhatsApp opens a clearly labeled demo draft without a preselected recipient.
+
+The locally stored Government of Punjab emblem in `assets/punjab-emblem.png` was copied from the public HRMIS frontend asset `govlogoUpdated.png` and visually checked against an emblem on an official Punjab Primary & Secondary Healthcare Department order at `https://pshealthpunjab.gov.pk/Upload/Orders/0ffl33cm.hc58948598.pdf`. It is a Government of Punjab mark, not a DHA logo. Its presence does not make the prototype an official government service.

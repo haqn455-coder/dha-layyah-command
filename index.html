@@ -37,6 +37,13 @@
     /* Mobile executive readability pass — 2026-09-24 */
     html, body { overflow-x: hidden; }
     button, a { min-height: 44px; }
+    *, *::before, *::after { box-sizing: border-box; }
+    .demo-banner { border: 1px solid #92400e; background: #422006; color: #fde68a; border-radius: 12px; padding: 10px 13px; font-size: .83rem; font-weight: 700; }
+    .queue-meta { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px 12px; font-size: .82rem; color: #cbd5e1; }
+    .queue-meta strong { color: #f8fafc; }
+    .facility-detail { border-top: 1px solid rgba(148,163,184,.2); padding-top: 9px; margin-top: 9px; color: #cbd5e1; font-size: .85rem; }
+    .facility-detail summary { cursor: pointer; font-weight: 700; color: #6ee7b7; min-height: 44px; display: flex; align-items: center; }
+    .facility-detail p { margin: 4px 0; }
 
     @media (max-width: 640px) {
       body {
@@ -383,6 +390,7 @@
         border-radius: 24px 24px 0 0 !important;
         padding: 22px 18px calc(20px + env(safe-area-inset-bottom)) !important;
         overflow-x: hidden !important;
+        overscroll-behavior: contain;
       }
       .letter-sheet h2 {
         font-size: 1.22rem !important;
@@ -424,6 +432,8 @@
     }
 
     @media (max-width: 430px) {
+      .queue-meta { grid-template-columns: 1fr; }
+      .letter-sheet { max-height: 100dvh !important; border-radius: 0 !important; }
       .gov-brand-mark {
         width: 48px;
         height: 48px;
@@ -508,9 +518,8 @@
     <div class="max-w-3xl w-full mx-auto flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <div class="gov-brand-mark flex-shrink-0" aria-label="Government of Punjab emblem">
-          <img src="https://beta.hrmis.pshealth.punjab.gov.pk/assets/img/govlogoUpdated.png"
+          <img src="assets/punjab-emblem.png"
                alt="Government of Punjab emblem"
-               referrerpolicy="no-referrer"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="gov-logo-fallback" style="display:none">GOP</div>
         </div>
@@ -526,7 +535,7 @@
       <div class="flex items-center space-x-2">
         <div class="flex items-center space-x-1.5 bg-emerald-950/80 border border-emerald-800/80 px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-400">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Live</span>
+          <span>Demo</span>
         </div>
       </div>
     </div>
@@ -534,38 +543,39 @@
 
   <!-- MAIN CONTAINER (NATURAL MOBILE WIDTH) -->
   <main class="app-main max-w-3xl w-full mx-auto px-4 mt-4 space-y-4">
+    <p class="demo-banner">SYNTHETIC DEMO — figures, facilities, incidents, orders and times are illustrative. No live government system or official dispatch is connected.</p>
 
     <!-- METRICS CARDS (BOLD, HIGH-VISIBILITY GRID) -->
     <div class="grid grid-cols-2 gap-3">
       
-      <!-- Biometric Attendance -->
+      <!-- Attendance & facility readiness (synthetic) -->
       <div onclick="switchTab('biometric')" class="glass-card p-3.5 border-l-4 border-l-purple-500 cursor-pointer active:scale-95 transition-all">
         <div class="flex items-center justify-between text-xs font-semibold text-slate-400">
-          <span>Biometric</span>
+          <span>Attendance</span>
           <i class="fa-solid fa-fingerprint text-purple-400 text-sm"></i>
         </div>
         <div class="text-2xl font-black text-white mt-1">88.4%</div>
-        <div class="text-xs text-purple-300 font-medium mt-0.5">2,410 Punched</div>
+        <div class="text-xs text-purple-300 font-medium mt-0.5">Illustrative punches</div>
       </div>
 
       <!-- Critical Red Flags -->
       <div onclick="switchTab('radar')" class="glass-card p-3.5 border-l-4 border-l-red-500 cursor-pointer active:scale-95 transition-all">
         <div class="flex items-center justify-between text-xs font-semibold text-slate-400">
-          <span>Red Flags</span>
+          <span>CEO Queue</span>
           <i class="fa-solid fa-triangle-exclamation text-red-400 text-sm"></i>
         </div>
         <div class="text-2xl font-black text-red-400 mt-1">03 Active</div>
-        <div class="text-xs text-red-300 font-medium mt-0.5">Needs Action</div>
+        <div class="text-xs text-red-300 font-medium mt-0.5">Demo exceptions</div>
       </div>
 
       <!-- Active Facilities -->
-      <div class="glass-card p-3.5 border-l-4 border-l-emerald-500">
+      <div onclick="switchTab('biometric')" class="glass-card p-3.5 border-l-4 border-l-emerald-500 cursor-pointer">
         <div class="flex items-center justify-between text-xs font-semibold text-slate-400">
           <span>MNHC &amp; THQs</span>
           <i class="fa-solid fa-house-medical-circle-check text-emerald-400 text-sm"></i>
         </div>
         <div class="text-2xl font-black text-emerald-400 mt-1">48/51</div>
-        <div class="text-xs text-slate-400 font-medium mt-0.5">Clinics Open</div>
+        <div class="text-xs text-slate-400 font-medium mt-0.5">Illustrative open</div>
       </div>
 
       <!-- CM Portal SLA -->
@@ -583,66 +593,39 @@
     <!-- MAIN NAVIGATION TABS (BIG, READABLE PILLS) -->
     <div class="executive-tabs text-sm font-semibold">
       
-      <button onclick="switchTab('radar')" id="tab-radar" class="px-3 py-2.5 rounded-xl tab-active flex items-center justify-center gap-2">
-        <i class="fa-solid fa-tower-broadcast"></i>
-        <span>Morning Radar</span>
-        <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full ml-1">3</span>
+      <button onclick="switchTab('biometric')" id="tab-biometric" class="px-3 py-2.5 rounded-xl tab-active flex items-center justify-center gap-2">
+        <i class="fa-solid fa-fingerprint text-purple-400"></i>
+        <span>Attendance &amp; Readiness</span>
       </button>
 
-      <button onclick="switchTab('biometric')" id="tab-biometric" class="px-3 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 border border-slate-700">
-        <i class="fa-solid fa-fingerprint text-purple-400"></i>
-        <span>Biometric Attendance</span>
+      <button onclick="switchTab('radar')" id="tab-radar" class="px-3 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 border border-slate-700">
+        <i class="fa-solid fa-list-check"></i>
+        <span>CEO Action Queue</span>
+        <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full ml-1">3</span>
       </button>
 
       <button onclick="switchTab('cm-squad')" id="tab-cm-squad" class="px-3 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 border border-slate-700">
         <i class="fa-solid fa-person-military-pointing text-rose-400"></i>
-        <span>CM Special Squad</span>
+        <span>External Inspection</span>
       </button>
 
       <button onclick="switchTab('vlink')" id="tab-vlink" class="px-3 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 border border-slate-700">
         <i class="fa-solid fa-shield-halved text-blue-400"></i>
-        <span>V-Link Defense</span>
+        <span>Provincial Brief</span>
       </button>
 
       <button onclick="switchTab('dispatch')" id="tab-dispatch" class="px-3 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 border border-slate-700">
         <i class="fa-solid fa-signature text-emerald-400"></i>
-        <span>Orders Vault</span>
+        <span>Orders &amp; Approvals</span>
       </button>
 
     </div>
 
     <!-- ==================== TAB 1: MORNING RADAR ==================== -->
-    <div id="view-radar" class="space-y-4">
-
-      <!-- DISTRICT ADMIN SURVEILLANCE FEED -->
-      <div class="glass-card p-4 border-l-4 border-l-blue-500 space-y-3">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-2">
-            <i class="fa-solid fa-building-columns text-blue-400 text-base"></i>
-            <h2 class="text-sm font-bold text-white uppercase tracking-wider">District Admin Surveillance</h2>
-          </div>
-          <span class="text-xs font-bold bg-blue-950 text-blue-300 px-2.5 py-0.5 rounded border border-blue-800">Live</span>
-        </div>
-        <p class="text-xs text-slate-300">
-          Consolidated live feed of unannounced DC/AC inspections, central HISDU server anomalies, and CEO/DDHO supervisory logs.
-        </p>
-
-        <div class="space-y-2 text-xs">
-          <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 flex items-start space-x-2.5">
-            <i class="fa-solid fa-circle-exclamation text-rose-400 text-sm mt-0.5 flex-shrink-0"></i>
-            <div>
-              <div class="font-bold text-white">AC Chaubara Surprise Raid (08:40 AM)</div>
-              <div class="text-slate-300 mt-1">Visited THQ Chaubara; noted absence of 3 MOs in OPD. Geotagged photos submitted to DC group.</div>
-            </div>
-          </div>
-          <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 flex items-start space-x-2.5">
-            <i class="fa-solid fa-server text-purple-400 text-sm mt-0.5 flex-shrink-0"></i>
-            <div>
-              <div class="font-bold text-white">HISDU Automated Anomaly (08:30 AM)</div>
-              <div class="text-slate-300 mt-1">3 Maryam Nawaz Health Clinics flagged for delayed morning biometric attendance punch.</div>
-            </div>
-          </div>
-        </div>
+    <div id="view-radar" class="space-y-4 hidden">
+      <div class="glass-card p-4 border-l-4 border-l-red-500">
+        <h2 class="text-base font-bold">CEO Action Queue <span class="text-xs text-amber-300">3 synthetic examples</span></h2>
+        <p class="text-sm text-slate-300 mt-1">Only unresolved, overdue, safety critical or CEO decision requiring items appear here. Source, owner and due time must be verified before action.</p>
       </div>
 
       <!-- RED FLAG 1: THQ CHAUBARA ASV ZERO STOCK -->
@@ -650,26 +633,27 @@
         <div class="flex items-start justify-between gap-2">
           <div>
             <div class="flex items-center space-x-2">
-              <span class="text-xs font-extrabold uppercase bg-red-950 text-red-300 border border-red-800 px-2 py-0.5 rounded">Zero Stock</span>
+              <span class="text-xs font-extrabold uppercase bg-red-950 text-red-300 border border-red-800 px-2 py-0.5 rounded">Escalated supply</span>
               <span class="text-xs font-semibold text-slate-400">THQ Chaubara</span>
             </div>
-            <h3 class="text-base font-bold text-white mt-1.5 leading-snug">Anti-Snake Venom (ASV) is ZERO (0 Vials)</h3>
+            <h3 class="text-base font-bold text-white mt-1.5 leading-snug">ASV shortage unresolved — CEO decision needed</h3>
           </div>
-          <span class="text-xs font-bold text-red-400 bg-red-950 px-2.5 py-1 rounded-full flex-shrink-0">High Risk</span>
+          <span class="text-xs font-bold text-red-400 bg-red-950 px-2.5 py-1 rounded-full flex-shrink-0">Critical</span>
         </div>
         <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Casualty aur Pharmacy dono mein stock 0 hai. Thal desert tehsil mein snake-bite casualty par seedha CEO Health inquiry banti hai.
+          Synthetic case: facility reports zero ASV, local replenishment remains unresolved and patient safety may be affected. Verify stock and escalation before any directive.
         </p>
+        <div class="queue-meta"><div><strong>Source:</strong> Demo stock escalation</div><div><strong>Severity:</strong> Critical</div><div><strong>Officer:</strong> MS THQ Chaubara</div><div><strong>Due:</strong> Illustrative 6 hours</div><div><strong>Closure:</strong> Confirm replenishment evidence</div></div>
 
         <!-- LARGE TOUCH BUTTONS -->
         <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-800">
           <button onclick="openLetterModal('ASV_CHAUBARA')" class="py-3 px-3 bg-red-600 hover:bg-red-500 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-1.5 shadow-md shadow-red-950">
             <i class="fa-solid fa-file-signature text-sm"></i>
-            <span>Issue Notice</span>
+            <span>Review draft</span>
           </button>
-          <a href="https://wa.me/923000000000?text=Dr.%20Sahib%20(MS%20THQ%20Chaubara),%20CEO%20Health%20office%20indicates%20ZERO%20stock%20of%20Anti-Snake%20Venom%20(ASV)%20today.%20Submit%20immediate%20replenishment%20report.%20-CEO%20Health%20Layyah" target="_blank" class="py-3 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-1.5 shadow-md shadow-emerald-950">
+          <a href="https://api.whatsapp.com/send?text=PROTOTYPE%20DEMO%20%E2%80%94%20NOT%20AN%20OFFICIAL%20DISPATCH.%20Illustrative%20ASV%20escalation%20at%20THQ%20Chaubara.%20Please%20verify%20current%20stock%2C%20alternative%20supply%20and%20patient%20safety%20status%20before%20any%20action." target="_blank" rel="noopener noreferrer" class="py-3 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-1.5 shadow-md shadow-emerald-950">
             <i class="fa-brands fa-whatsapp text-base"></i>
-            <span>WhatsApp MS</span>
+            <span>Share draft</span>
           </a>
         </div>
       </div>
@@ -682,23 +666,24 @@
               <span class="text-xs font-extrabold uppercase bg-amber-950 text-amber-300 border border-amber-800 px-2 py-0.5 rounded">Center Locked</span>
               <span class="text-xs font-semibold text-slate-400">MNHC 14/TDK</span>
             </div>
-            <h3 class="text-base font-bold text-white mt-1.5 leading-snug">Clinic Locked &amp; MO Absent at 09:00 AM</h3>
+            <h3 class="text-base font-bold text-white mt-1.5 leading-snug">Facility opening and coverage unresolved</h3>
           </div>
-          <span class="text-xs font-bold text-amber-400 bg-amber-950 px-2.5 py-1 rounded-full flex-shrink-0">AC Report</span>
+          <span class="text-xs font-bold text-amber-400 bg-amber-950 px-2.5 py-1 rounded-full flex-shrink-0">Demo AC finding</span>
         </div>
         <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Assistant Commissioner (AC) ke surprise inspection ke mutabiq 09:00 AM tak center closed hai aur staff ki attendance punch nahi hui.
+          Synthetic AC inspection example: facility closed at the illustrative 09:00 cutoff. Confirm roster, punch, approved leave and emergency cover.
         </p>
+        <div class="queue-meta"><div><strong>Source:</strong> Demo AC inspection</div><div><strong>Severity:</strong> High</div><div><strong>Officer:</strong> DDHO Layyah</div><div><strong>Due:</strong> Illustrative 12 hours</div><div><strong>Closure:</strong> Opening and cover evidence</div></div>
 
         <!-- LARGE TOUCH BUTTONS -->
         <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-800">
           <button onclick="openLetterModal('MNHC_ABSENT')" class="py-3 px-3 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-1.5">
             <i class="fa-solid fa-file-pen text-sm"></i>
-            <span>Call Explanation</span>
+            <span>Review draft</span>
           </button>
-          <a href="https://wa.me/923000000000?text=DDHO%20Layyah,%20Maryam%20Nawaz%20Health%20Clinic%2014/TDK%20has%20been%20flagged%20locked%20with%20zero%20attendance%20this%20morning.%20Take%20immediate%20action.%20-CEO%20Health%20Layyah" target="_blank" class="py-3 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-1.5">
+          <a href="https://api.whatsapp.com/send?text=PROTOTYPE%20DEMO%20%E2%80%94%20NOT%20AN%20OFFICIAL%20DISPATCH.%20Illustrative%20opening%20and%20attendance%20finding%20at%20MNHC%2014/TDK.%20Please%20verify%20inspection%20evidence%2C%20roster%2C%20approved%20leave%20and%20emergency%20coverage." target="_blank" rel="noopener noreferrer" class="py-3 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-1.5">
             <i class="fa-brands fa-whatsapp text-base"></i>
-            <span>Ping DDHO</span>
+            <span>Share draft</span>
           </a>
         </div>
       </div>
@@ -711,23 +696,24 @@
               <span class="text-xs font-extrabold uppercase bg-rose-950 text-rose-300 border border-rose-800 px-2 py-0.5 rounded">CM 1033 SLA</span>
               <span class="text-xs font-semibold text-slate-400">THQ Karor</span>
             </div>
-            <h3 class="text-base font-bold text-white mt-1.5 leading-snug">CM Complaint #4823 — Free Insulin Refusal</h3>
+            <h3 class="text-base font-bold text-white mt-1.5 leading-snug">Complaint #4823 — response pending</h3>
           </div>
-          <span class="text-xs font-bold text-rose-400 bg-rose-950 px-2.5 py-1 rounded-full flex-shrink-0">2h 45m left</span>
+          <span class="text-xs font-bold text-rose-400 bg-rose-950 px-2.5 py-1 rounded-full flex-shrink-0">Demo due</span>
         </div>
         <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Chronic patient ne free medicine non-availability ki complaint CM portal par darj ki hai. Deadline breach par DC aur Lahore red mark lage ga.
+          Synthetic complaint example: medicine access grievance requires a verified response and closure evidence before the illustrative deadline.
         </p>
+        <div class="queue-meta"><div><strong>Source:</strong> Demo complaint signal</div><div><strong>Severity:</strong> Time critical</div><div><strong>Officer:</strong> MS THQ Karor</div><div><strong>Due:</strong> Illustrative 2h 45m</div><div><strong>Closure:</strong> Patient response and portal proof</div></div>
 
         <!-- LARGE TOUCH BUTTONS -->
         <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-800">
           <button onclick="openLetterModal('CM_COMPLAINT')" class="py-3 px-3 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-1.5">
             <i class="fa-solid fa-paper-plane text-sm"></i>
-            <span>Direct Inquiry</span>
+            <span>Review draft</span>
           </button>
-          <a href="https://wa.me/923000000000?text=MS%20THQ%20Karor,%20CM%20Complaint%204823%20regarding%20insulin%20refusal%20has%20less%20than%203%20hours%20before%20SLA%20breach.%20Provide%20redressal%20report.%20-CEO%20Health%20Layyah" target="_blank" class="py-3 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-1.5">
+          <a href="https://api.whatsapp.com/send?text=PROTOTYPE%20DEMO%20%E2%80%94%20NOT%20AN%20OFFICIAL%20DISPATCH.%20Illustrative%20complaint%20%234823%20at%20THQ%20Karor.%20Please%20verify%20the%20complaint%2C%20patient%20response%20and%20closure%20evidence." target="_blank" rel="noopener noreferrer" class="py-3 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center space-x-1.5">
             <i class="fa-brands fa-whatsapp text-base"></i>
-            <span>WhatsApp MS</span>
+            <span>Share draft</span>
           </a>
         </div>
       </div>
@@ -735,13 +721,21 @@
     </div>
 
     <!-- ==================== TAB 2: BIOMETRIC ATTENDANCE ==================== -->
-    <div id="view-biometric" class="space-y-4 hidden">
+    <div id="view-biometric" class="space-y-4">
+      <div class="glass-card p-4 border-l-4 border-l-emerald-500 space-y-2">
+        <h2 class="text-base font-bold">Attendance &amp; Facility Readiness</h2>
+        <p class="text-sm text-slate-300">First check: roster vs punch vs approved leave, facility opening, and emergency/casualty staffing. All values below are synthetic examples.</p>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+          <div class="bg-slate-900/80 p-3 rounded-xl"><strong>48/51</strong><br><span class="text-slate-300">Illustrative facilities open</span></div>
+          <div class="bg-slate-900/80 p-3 rounded-xl"><strong>1 gap</strong><br><span class="text-slate-300">Demo casualty coverage to confirm</span></div>
+        </div>
+      </div>
       
       <div class="glass-card p-4 border-l-4 border-l-purple-500 space-y-3">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-sm font-bold text-white uppercase tracking-wider">PITB Biometric Live Console</h2>
-            <div class="text-xs text-slate-400 mt-0.5">Cutoff: 08:30 AM • OPD (08:00 AM - 02:00 PM)</div>
+            <h2 class="text-sm font-bold text-white uppercase tracking-wider">Attendance reconciliation — demo</h2>
+            <div class="text-xs text-slate-400 mt-0.5">Illustrative cutoff 08:30 • Punch alone does not prove absence</div>
           </div>
           <span class="text-xs font-bold bg-purple-950 text-purple-300 px-2.5 py-1 rounded border border-purple-800">88.4% Present</span>
         </div>
@@ -751,12 +745,12 @@
           <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
             <div class="text-slate-400">Doctors / MOs / WMOs</div>
             <div class="text-lg font-bold text-amber-400 mt-1">79.2% <span class="text-xs font-normal text-slate-400">(285/360)</span></div>
-            <div class="text-xs text-rose-400 mt-1 font-semibold">75 Unpunched</div>
+            <div class="text-xs text-rose-400 mt-1 font-semibold">75 unpunched — leave/roster review pending</div>
           </div>
           <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
             <div class="text-slate-400">Nurses / LHVs</div>
             <div class="text-lg font-bold text-emerald-400 mt-1">93.4% <span class="text-xs font-normal text-slate-400">(420/450)</span></div>
-            <div class="text-xs text-emerald-400 mt-1 font-semibold">Optimal</div>
+            <div class="text-xs text-emerald-400 mt-1 font-semibold">Reconcile approved leave</div>
           </div>
         </div>
       </div>
@@ -765,30 +759,36 @@
       <div class="space-y-3">
         
         <!-- DHQ Layyah -->
-        <div class="glass-card p-4 flex items-center justify-between">
+        <div class="glass-card p-4">
+          <div class="flex items-center justify-between gap-2">
           <div>
             <div class="text-sm font-bold text-white">DHQ Hospital Layyah</div>
             <div class="text-xs text-slate-400 mt-0.5">Total: 580 | Punched: 529 (91.2%)</div>
           </div>
           <span class="text-xs font-bold text-emerald-400 bg-emerald-950 px-3 py-1 rounded-lg border border-emerald-800">Green</span>
+          </div><details class="facility-detail"><summary>Facility drill-down</summary><p>Roster 580 • Punch 529 • Approved leave: example pending • Open: example yes • Casualty cover: example present.</p></details>
         </div>
 
         <!-- THQ Fateh Pur -->
-        <div class="glass-card p-4 flex items-center justify-between">
+        <div class="glass-card p-4">
+          <div class="flex items-center justify-between gap-2">
           <div>
             <div class="text-sm font-bold text-white">THQ Hospital Fateh Pur</div>
             <div class="text-xs text-slate-400 mt-0.5">Total: 210 | Punched: 187 (89.0%)</div>
           </div>
           <span class="text-xs font-bold text-emerald-400 bg-emerald-950 px-3 py-1 rounded-lg border border-emerald-800">Green</span>
+          </div><details class="facility-detail"><summary>Facility drill-down</summary><p>Roster 210 • Punch 187 • Approved leave: example pending • Open: example yes • Emergency cover: example present.</p></details>
         </div>
 
         <!-- THQ Karor -->
-        <div class="glass-card p-4 flex items-center justify-between">
+        <div class="glass-card p-4">
+          <div class="flex items-center justify-between gap-2">
           <div>
             <div class="text-sm font-bold text-white">THQ Hospital Karor Lal Esan</div>
             <div class="text-xs text-slate-400 mt-0.5">Total: 240 | Punched: 203 (84.5%)</div>
           </div>
           <span class="text-xs font-bold text-amber-400 bg-amber-950 px-3 py-1 rounded-lg border border-amber-800">Warning</span>
+          </div><details class="facility-detail"><summary>Facility drill-down</summary><p>Roster 240 • Punch 203 • Approved leave: example pending • Open: example yes • Casualty cover: verify.</p></details>
         </div>
 
         <!-- THQ Chaubara - Red -->
@@ -796,35 +796,41 @@
           <div class="flex items-center justify-between">
             <div>
               <div class="text-sm font-bold text-white">THQ Hospital Chaubara</div>
-              <div class="text-xs text-red-300 mt-0.5">Punched: 109/160 (68.4%) • <strong>6 MOs Absent</strong></div>
+              <div class="text-xs text-red-300 mt-0.5">Demo punch: 109/160 (68.4%) • <strong>6 MO shifts need reconciliation</strong></div>
             </div>
             <span class="text-xs font-black text-red-300 bg-red-950 px-3 py-1 rounded-lg border border-red-800">Critical</span>
           </div>
           <button onclick="openLetterModal('BIOMETRIC_CHAUBARA')" class="w-full py-3 bg-red-600 hover:bg-red-500 text-white font-bold text-sm rounded-xl">
-            Issue Mass PEEDA Notice
+            Review explanation draft
           </button>
+          <details class="facility-detail"><summary>Facility drill-down</summary><p>Roster 160 • Punch 109 • Approved leave: verify • Opening: inspection signal pending confirmation • Casualty cover: verify before action.</p></details>
         </div>
 
       </div>
 
     </div>
 
-    <!-- ==================== TAB 3: CM MONITORING TEAM ==================== -->
+    <!-- ==================== TAB 3: EXTERNAL INSPECTIONS ==================== -->
     <div id="view-cm-squad" class="space-y-4 hidden">
+      <div class="glass-card p-4 border-l-4 border-l-blue-500 space-y-2">
+        <h2 class="text-base font-bold">External Monitoring &amp; Inspection</h2>
+        <p class="text-sm text-slate-300">Demo DC/AC/provincial findings → accountable officer response → evidence review → compliance closure. No inspection feed is connected.</p>
+        <div class="queue-meta"><div><strong>Source:</strong> Illustrative AC finding</div><div><strong>Owner:</strong> DDHO Layyah</div><div><strong>Response:</strong> Pending review</div><div><strong>Compliance:</strong> Open until evidence verified</div></div>
+      </div>
       
       <div class="glass-card p-4 border-2 border-rose-500 bg-rose-950/30 space-y-3">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-extrabold uppercase bg-rose-600 text-white px-2.5 py-0.5 rounded-full">7-Club Lahore Oversight</span>
-          <span class="text-xs font-bold text-rose-300">Code Red</span>
+          <span class="text-xs font-extrabold uppercase bg-rose-600 text-white px-2.5 py-0.5 rounded-full">Synthetic inspection scenario</span>
+          <span class="text-xs font-bold text-rose-300">Open</span>
         </div>
-        <h2 class="text-base font-bold text-white leading-snug">CM Special Squad Active in D.G. Khan Division</h2>
+        <h2 class="text-base font-bold text-white leading-snug">Readiness finding needs a response</h2>
         <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Chief Minister's Inspection Team (CMIT) conducts surprise raids. Immediate suspension for out-of-pocket medicine purchase or absent MOs.
+          Review facility observations, seek the officer's response and verify evidence before closure or escalation.
         </p>
 
         <button onclick="executeCodeRedPreemptive()" class="w-full py-3 bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm rounded-xl shadow-lg flex items-center justify-center space-x-2">
           <i class="fa-solid fa-bolt"></i>
-          <span>Activate 1-Tap Pre-Emptive Shield</span>
+          <span>Review response steps</span>
         </button>
       </div>
 
@@ -833,48 +839,48 @@
         <div class="glass-card p-4 flex items-center justify-between border-l-4 border-l-red-500">
           <div>
             <div class="font-bold text-white text-sm">THQ Chaubara</div>
-            <div class="text-xs text-red-300 mt-0.5">62% Readiness — ASV Zero Stock + Absent Doctors</div>
+            <div class="text-xs text-red-300 mt-0.5">Demo 62% readiness — stock and duty gaps to verify</div>
           </div>
           <button onclick="openLetterModal('CM_PREEMPTIVE_CHAUBARA')" class="px-3 py-2 bg-red-600 text-white text-xs font-bold rounded-xl whitespace-nowrap">
-            Dispatch Buffer
+            Review draft
           </button>
         </div>
 
         <div class="glass-card p-4 flex items-center justify-between border-l-4 border-l-emerald-500">
           <div>
             <div class="font-bold text-white text-sm">DHQ Hospital Layyah</div>
-            <div class="text-xs text-slate-400 mt-0.5">94% Readiness — CT Scan online, Free pharmacy verified</div>
+            <div class="text-xs text-slate-400 mt-0.5">Demo 94% readiness — evidence illustrative</div>
           </div>
-          <span class="text-emerald-400 font-bold text-xs">Compliant</span>
+          <span class="text-emerald-400 font-bold text-xs">Example</span>
         </div>
 
         <div class="glass-card p-4 flex items-center justify-between border-l-4 border-l-emerald-500">
           <div>
             <div class="font-bold text-white text-sm">THQ Hospital Fateh Pur</div>
-            <div class="text-xs text-slate-400 mt-0.5">91% Readiness — Diagnostics functional, Roster active</div>
+            <div class="text-xs text-slate-400 mt-0.5">Demo 91% readiness — evidence illustrative</div>
           </div>
-          <span class="text-emerald-400 font-bold text-xs">Compliant</span>
+          <span class="text-emerald-400 font-bold text-xs">Example</span>
         </div>
       </div>
 
       <!-- Preemptive Dossier -->
       <button onclick="openLetterModal('CM_DOSSIER')" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold rounded-xl shadow-md flex items-center justify-center space-x-2">
         <i class="fa-solid fa-file-shield text-base"></i>
-        <span>Review Signed CM Secretariat Dossier</span>
+        <span>Review illustrative response dossier</span>
       </button>
 
     </div>
 
-    <!-- ==================== TAB 4: V-LINK DEFENSE ==================== -->
+    <!-- ==================== TAB 4: PROVINCIAL BRIEF ==================== -->
     <div id="view-vlink" class="space-y-4 hidden">
       
       <div class="glass-card p-4 border-l-4 border-l-blue-500 space-y-3">
         <div class="flex items-center justify-between">
-          <h2 class="text-sm font-bold text-white uppercase tracking-wider">Lahore V-Link Defense Console</h2>
-          <span class="text-xs font-bold bg-blue-950 text-blue-300 px-2.5 py-1 rounded">District Rank: 7th</span>
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider">Provincial Review Brief</h2>
+          <span class="text-xs font-bold bg-blue-950 text-blue-300 px-2.5 py-1 rounded">Demo KPIs</span>
         </div>
         <p class="text-xs sm:text-sm text-slate-300">
-          Secretary Health aur DGHS meeting mein bolne ke liye ready-made defense points:
+          Illustrative district KPIs, gaps and briefing points. Replace with verified evidence before a real review.
         </p>
 
         <div class="space-y-3 text-xs sm:text-sm">
@@ -884,7 +890,7 @@
               <span class="text-emerald-400">94.2% (Target: 90%)</span>
             </div>
             <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
-              <strong>Defense Talk:</strong> "Sir, Layyah is 4.2% above benchmark. All 24/7 revamped Maryam Nawaz Health Clinics have active midwife rosters."
+              <strong>Briefing point:</strong> Example figure exceeds example target by 4.2 points; validate source period and facility roster evidence.
             </p>
           </div>
 
@@ -894,7 +900,7 @@
               <span class="text-amber-400">88.4% (Target: 90%)</span>
             </div>
             <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
-              <strong>Defense Talk:</strong> "Sir, overall district is 88.4%. Gap is confined to remote THQ Chaubara where mass PEEDA notices were issued today."
+              <strong>Gap / action:</strong> Example figure is below example target. Reconcile roster, punches and approved leave; confirm facility cover before escalation.
             </p>
           </div>
         </div>
@@ -908,27 +914,27 @@
       <div class="glass-card p-4 border border-slate-800 space-y-3">
         <div class="flex items-center justify-between border-b border-slate-800 pb-3">
           <div>
-            <h2 class="text-base font-bold text-white">CEO Biometric Signature Vault</h2>
-            <div class="text-xs text-slate-400 mt-0.5">Official DHA Layyah Digital Dispatch System</div>
+            <h2 class="text-base font-bold text-white">Orders &amp; Approvals — prototype</h2>
+            <div class="text-xs text-slate-400 mt-0.5">Draft → Review → CEO Authenticate → QR/Hash → Dispatch → Compliance Due → Closed (future production workflow)</div>
           </div>
-          <span class="text-xs font-bold text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded border border-emerald-800">Biometric PIN</span>
+          <span class="text-xs font-bold text-amber-300 bg-amber-950 px-2.5 py-1 rounded border border-amber-800">Simulated</span>
         </div>
 
         <div class="space-y-2.5 text-xs sm:text-sm">
           <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
             <div>
-              <div class="font-bold text-white">DHA/LY/2026/895 — Mass Show-Cause: 6 Absent MOs</div>
-              <div class="text-xs text-slate-400 mt-0.5">THQ Chaubara • Signed with Master PIN</div>
+              <div class="font-bold text-white">DEMO/895 — Attendance explanation draft</div>
+              <div class="text-xs text-slate-400 mt-0.5">THQ Chaubara • Awaiting evidence and CEO review</div>
             </div>
             <span class="text-xs font-bold text-amber-400">In Progress</span>
           </div>
 
           <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
             <div>
-              <div class="font-bold text-white">DHA/LY/2026/894 — Explanation: Zero Stock ASV</div>
-              <div class="text-xs text-slate-400 mt-0.5">Issued to MS Chaubara • WhatsApp Dispatched</div>
+              <div class="font-bold text-white">DEMO/894 — ASV escalation draft</div>
+              <div class="text-xs text-slate-400 mt-0.5">MS Chaubara • No official dispatch</div>
             </div>
-            <span class="text-xs font-bold text-emerald-400">Delivered</span>
+            <span class="text-xs font-bold text-amber-300">Demo only</span>
           </div>
         </div>
       </div>
@@ -939,20 +945,20 @@
 
 
   <nav class="mobile-bottom-nav" aria-label="Executive navigation">
-    <button type="button" data-mobile-tab="radar" onclick="switchTab('radar')" class="mobile-nav-active">
-      <i class="fa-solid fa-tower-broadcast"></i><span>Radar</span>
+    <button type="button" data-mobile-tab="biometric" onclick="switchTab('biometric')" class="mobile-nav-active">
+      <i class="fa-solid fa-fingerprint"></i><span>Attendance</span>
     </button>
-    <button type="button" data-mobile-tab="biometric" onclick="switchTab('biometric')">
-      <i class="fa-solid fa-fingerprint"></i><span>Biometric</span>
+    <button type="button" data-mobile-tab="radar" onclick="switchTab('radar')">
+      <i class="fa-solid fa-list-check"></i><span>Queue</span>
     </button>
     <button type="button" data-mobile-tab="cm-squad" onclick="switchTab('cm-squad')">
-      <i class="fa-solid fa-person-military-pointing"></i><span>CM Squad</span>
+      <i class="fa-solid fa-clipboard-check"></i><span>Inspection</span>
     </button>
     <button type="button" data-mobile-tab="vlink" onclick="switchTab('vlink')">
-      <i class="fa-solid fa-shield-halved"></i><span>V-Link</span>
+      <i class="fa-solid fa-chart-line"></i><span>Brief</span>
     </button>
     <button type="button" data-mobile-tab="dispatch" onclick="switchTab('dispatch')">
-      <i class="fa-solid fa-signature"></i><span>Vault</span>
+      <i class="fa-solid fa-signature"></i><span>Orders</span>
     </button>
   </nav>
 
@@ -968,9 +974,8 @@
       <!-- OFFICIAL GOVERNMENT LETTERHEAD -->
       <div class="text-center border-b-2 border-slate-900 pb-3">
         <div class="letter-gov-mark mb-2" aria-label="Government of Punjab emblem">
-          <img src="https://beta.hrmis.pshealth.punjab.gov.pk/assets/img/govlogoUpdated.png"
+          <img src="assets/punjab-emblem.png"
                alt="Government of Punjab emblem"
-               referrerpolicy="no-referrer"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="gov-logo-fallback light" style="display:none">GOP</div>
         </div>
@@ -982,8 +987,8 @@
 
       <!-- DISPATCH METADATA -->
       <div class="letter-meta flex justify-between items-center text-xs font-semibold text-slate-700 mt-3 border-b border-slate-200 pb-2">
-        <span id="letterDispatchNo">No. DHA/LY/2026/895-B</span>
-        <span id="letterDate">Dated Layyah, the 24th September, 2026</span>
+        <span id="letterDispatchNo">Draft ref. DEMO/895-B</span>
+        <span id="letterDate">Illustrative date: 24 Sep 2026</span>
       </div>
 
       <!-- LETTER BODY -->
@@ -995,7 +1000,7 @@
         <div>
           <strong>Subject:</strong> <span id="letterSubject" class="font-bold underline uppercase text-slate-900">EXPLANATION CALL</span>
         </div>
-        <div id="letterContent" class="text-justify pt-1">
+        <div id="letterContent" class="text-left pt-1">
           Content loading...
         </div>
       </div>
@@ -1003,15 +1008,15 @@
       <!-- SIGNATURE STAMP BLOCK -->
       <div class="letter-signature mt-6 pt-3 flex items-end justify-between border-t border-slate-200">
         <div class="flex items-center space-x-2 text-xs text-slate-500">
-          <i class="fa-solid fa-qrcode text-3xl text-slate-800"></i>
+          <i class="fa-solid fa-file-circle-question text-3xl text-slate-800"></i>
           <div>
-            <div>Digitally Verified by DHA Layyah</div>
-            <div class="font-mono text-[10px]">HASH: 9a8b7c6d5e4f</div>
+            <div>QR and hash: future production step</div>
+            <div class="font-mono text-[10px]">NO VERIFICATION IN DEMO</div>
           </div>
         </div>
         <div class="text-center">
           <div class="font-serif italic font-bold text-blue-900 text-lg tracking-wide border-b border-blue-900 pb-0.5">
-            Dr. Shahid Riaz
+            CEO review pending
           </div>
           <div class="text-xs font-bold text-slate-900 mt-1">Chief Executive Officer</div>
           <div class="text-xs text-slate-600">District Health Authority, Layyah</div>
@@ -1025,7 +1030,7 @@
         </button>
         <button onclick="confirmAndDispatchWhatsApp()" class="w-2/3 py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg flex items-center justify-center space-x-2">
           <i class="fa-brands fa-whatsapp text-lg"></i>
-          <span>Dispatch Notice</span>
+          <span>Share demo draft</span>
         </button>
       </div>
 
@@ -1035,8 +1040,7 @@
   <!-- PURE VALID JAVASCRIPT (TESTED WITH ZERO SYNTAX ERRORS) -->
   <script>
     function executeCodeRedPreemptive() {
-      var msg = "CODE RED PROTOCOL ACTIVATED!\n\n1. DHQ emergency van dispatched with 20 ASV vials to THQ Chaubara.\n2. 2 reserve MOs assigned to Chaubara Casualty.\n3. Insulin replenishment delivered to THQ Karor.\n4. Geotagged clearance report logged for CM Monitoring Team!";
-      alert(msg);
+      alert("DEMO RESPONSE CHECKLIST\n\n1. Confirm the inspection source and evidence.\n2. Reconcile roster, punch and approved leave.\n3. Confirm emergency cover and critical supply.\n4. Assign the accountable officer and due time.\n5. Review closure proof. No action has been dispatched.");
     }
 
     function switchTab(tab) {
@@ -1074,53 +1078,50 @@
       }
     }
 
+    const demoDrafts = {
+      CM_PREEMPTIVE_CHAUBARA: ["Emergency readiness response — draft", "MS, THQ Hospital Chaubara", "Illustrative inspection response: verify the ASV shortage, transfer availability, duty roster and emergency coverage. Record approved corrective action and evidence before any real order."],
+      CM_DOSSIER: ["Provincial compliance brief — draft", "Provincial review team", "Illustrative district brief: summarize verified facility readiness, responsible officers, gaps, corrective actions and evidence. No dossier has been signed or submitted."],
+      ASV_CHAUBARA: ["ASV escalation explanation — draft", "MS, THQ Hospital Chaubara", "Illustrative unresolved ASV shortage. Confirm current stock and alternative supply, patient safety impact, officer response and replenishment evidence before a CEO decision."],
+      BIOMETRIC_CHAUBARA: ["Attendance reconciliation — draft", "MS, THQ Hospital Chaubara", "Illustrative punch gap at THQ Chaubara. Compare the duty roster, punches and approved leave; verify emergency coverage and individual facts before any explanation or disciplinary process."],
+      MNHC_ABSENT: ["Facility opening explanation — draft", "Incharge, MNHC 14/TDK", "Illustrative AC finding of a closed facility. Confirm inspection evidence, opening time, staff roster, approved leave and interim patient coverage before deciding the response."],
+      CM_COMPLAINT: ["Complaint response — draft", "MS, THQ Hospital Karor Lal Esan", "Illustrative medicine access complaint #4823. Verify complaint status, contact the responsible officer and review patient response and portal closure evidence before the example due time."]
+    };
+
     function openLetterModal(type) {
-      var modal = document.getElementById('letterModal');
-      var sub = document.getElementById('letterSubject');
-      var rec = document.getElementById('letterRecipient');
-      var con = document.getElementById('letterContent');
-
-      if (!modal || !sub || !rec || !con) return;
-
-      if (type === 'CM_PREEMPTIVE_CHAUBARA') {
-        sub.innerText = "IMMEDIATE EMERGENCY INTERVENTION — PRE-EMPTIVE REPLENISHMENT & HR REPLACEMENT";
-        rec.innerText = "The Medical Superintendent, THQ Hospital Chaubara, District Layyah.";
-        con.innerHTML = "In view of the active surveillance of the Chief Minister's Special Monitoring Team in D.G. Khan Division, you are hereby informed that an emergency buffer of twenty (20) vials of Anti-Snake Venom (ASV) is being dispatched via DHQ emergency van immediately.<br><br>Furthermore, two (02) Medical Officers from DHQ reserve pool are deployed to THQ Chaubara with immediate effect. Any lapse in patient facilitation or attendance shall result in immediate initiation of PEEDA proceedings.";
-      } else if (type === 'CM_DOSSIER') {
-        sub.innerText = "PRE-EMPTIVE COMPLIANCE & FACILITY READINESS DOSSIER — DISTRICT LAYYAH";
-        rec.innerText = "The Secretary to Chief Minister Punjab / Chairperson CM Inspection Team, 7-Club Road, GOR-I, Lahore.";
-        con.innerHTML = "I have the honour to submit that District Health Authority Layyah has placed all secondary health facilities (DHQ Layyah, THQ Fateh Pur, THQ Karor, and THQ Chaubara) along with fifty-one (51) Maryam Nawaz Health Clinics on high alert.<br><br>All emergency life-saving medications, diagnostics, and doctor duties are being personally monitored via our real-time Executive Command Center. Deficiencies reported at remote desert facilities have been rectified on a war-footing under strict compliance with the vision of the Chief Minister Punjab.";
-      } else if (type === 'ASV_CHAUBARA') {
-        sub.innerText = "EXPLANATION CALL — REPORTED ZERO-STOCK OF ANTI-SNAKE VENOM (ASV)";
-        rec.innerText = "The Medical Superintendent, THQ Hospital Chaubara, District Layyah.";
-        con.innerHTML = "It has come to the notice of the undersigned through the Executive Command Center that THQ Hospital Chaubara currently holds <strong>ZERO (0) vials</strong> of Anti-Snake Venom (ASV), posing an unacceptable risk to human lives in a snake-bite endemic desert tehsil.<br><br>You are hereby directed to explain your position in writing within <strong>six (06) hours</strong> of the receipt of this order as to why timely replenishment was not requisitioned from the District Warehouse, and why strict disciplinary proceedings under PEEDA Act 2006 should not be initiated against you.";
-      } else if (type === 'BIOMETRIC_CHAUBARA') {
-        sub.innerText = "SHOW CAUSE & EXPLANATION — MASS BIOMETRIC ABSENTEEISM (68.4% COMPLIANCE)";
-        rec.innerText = "The Medical Superintendent, THQ Hospital Chaubara, District Layyah.";
-        con.innerHTML = "As per PITB Biometric Attendance live records at 09:00 AM today, biometric compliance at THQ Hospital Chaubara dropped to an unacceptable <strong>68.4%</strong>, with six (06) Medical Officers and dental surgeons unpunched without prior approved leave in HRMIS.<br><br>You are directed to initiate strict disciplinary inquiries under PEEDA Act 2006 against all absentee staff and submit a comprehensive report within <strong>twenty-four (24) hours</strong>.";
-      } else if (type === 'MNHC_ABSENT') {
-        sub.innerText = "SHOW CAUSE NOTICE — CENTER LOCKED & UNAUTHORIZED ABSENCE";
-        rec.innerText = "The Incharge Medical Officer, Maryam Nawaz Health Clinic (MNHC) 14/TDK, District Layyah.";
-        con.innerHTML = "As per real-time biometric and AC / DC Field Squad & PITB Surveillance, Maryam Nawaz Health Clinic 14/TDK was found locked at 09:00 AM today with total absenteeism of clinical staff.<br><br>You are directed to submit your explanation within <strong>twelve (12) hours</strong>, failing which your case shall be forwarded to the competent authority for immediate suspension.";
-      } else if (type === 'CM_COMPLAINT') {
-        sub.innerText = "URGENT COMPLIANCE DIRECTIVE — CHIEF MINISTER HELPLINE #4823";
-        rec.innerText = "The Medical Superintendent, THQ Hospital Karor Lal Esan, District Layyah.";
-        con.innerHTML = "Chief Minister Complaint Cell has flagged Complaint #4823 regarding refusal of chronic disease medication (Insulin). Less than 3 hours remain before statutory SLA breach.<br><br>You are directed to personally resolve the grievance, provide prescribed medication to the citizen immediately, and upload compliance on the portal before 12:00 PM today.";
-      }
-
+      const modal = document.getElementById('letterModal');
+      const draft = demoDrafts[type];
+      if (!modal || !draft) return;
+      document.getElementById('letterSubject').textContent = draft[0];
+      document.getElementById('letterRecipient').textContent = draft[1];
+      document.getElementById('letterContent').textContent = draft[2];
+      document.getElementById('letterDispatchNo').textContent = 'Draft ref. DEMO/' + type;
       modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      modal.querySelector('.letter-sheet').scrollTop = 0;
+      modal.querySelector('button').focus();
     }
 
     function closeLetterModal() {
-      var modal = document.getElementById('letterModal');
+      const modal = document.getElementById('letterModal');
       if (modal) modal.classList.add('hidden');
+      document.body.style.overflow = '';
     }
 
     function confirmAndDispatchWhatsApp() {
-      alert("Executive Order Verified with Biometric Signature! Opening WhatsApp dispatch...");
+      const subject = document.getElementById('letterSubject').textContent;
+      const recipient = document.getElementById('letterRecipient').textContent;
+      const body = document.getElementById('letterContent').textContent;
+      const text = 'PROTOTYPE DEMO — NOT AN OFFICIAL DISPATCH\n' + subject + '\nTo: ' + recipient + '\n' + body;
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank', 'noopener');
       closeLetterModal();
-      window.open("https://wa.me/923000000000?text=OFFICIAL%20DIRECTIVE%20FROM%20CEO%20HEALTH%20LAYYAH:%20Urgent%20compliance%20order%20issued.%20Report%20within%20stipulated%20time.", "_blank");
     }
+
+    document.getElementById('letterModal').addEventListener('click', function(event) {
+      if (event.target === this) closeLetterModal();
+    });
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeLetterModal();
+    });
   </script>
 
 </body>
