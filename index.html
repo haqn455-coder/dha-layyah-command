@@ -828,10 +828,17 @@
           Review facility observations, seek the officer's response and verify evidence before closure or escalation.
         </p>
 
-        <button onclick="executeCodeRedPreemptive()" class="w-full py-3 bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm rounded-xl shadow-lg flex items-center justify-center space-x-2">
+        <button onclick="executeCodeRedPreemptive()" aria-expanded="false" aria-controls="inspectionChecklist" class="w-full py-3 bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm rounded-xl shadow-lg flex items-center justify-center space-x-2">
           <i class="fa-solid fa-bolt"></i>
           <span>Review response steps</span>
         </button>
+        <ol id="inspectionChecklist" class="hidden list-decimal pl-5 text-sm text-slate-200 space-y-1">
+          <li>Confirm the inspection source and evidence.</li>
+          <li>Reconcile roster, punch and approved leave.</li>
+          <li>Confirm emergency cover and critical supply.</li>
+          <li>Assign the accountable officer and due time.</li>
+          <li>Review closure proof. No action has been dispatched.</li>
+        </ol>
       </div>
 
       <!-- Readiness Scores -->
@@ -1040,7 +1047,10 @@
   <!-- PURE VALID JAVASCRIPT (TESTED WITH ZERO SYNTAX ERRORS) -->
   <script>
     function executeCodeRedPreemptive() {
-      alert("DEMO RESPONSE CHECKLIST\n\n1. Confirm the inspection source and evidence.\n2. Reconcile roster, punch and approved leave.\n3. Confirm emergency cover and critical supply.\n4. Assign the accountable officer and due time.\n5. Review closure proof. No action has been dispatched.");
+      const checklist = document.getElementById('inspectionChecklist');
+      const button = document.querySelector('[aria-controls="inspectionChecklist"]');
+      checklist.classList.toggle('hidden');
+      button.setAttribute('aria-expanded', String(!checklist.classList.contains('hidden')));
     }
 
     function switchTab(tab) {
