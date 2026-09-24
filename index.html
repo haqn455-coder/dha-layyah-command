@@ -560,6 +560,54 @@
       .letter-sheet .letter-meta, .letter-sheet .letter-signature { gap: 8px; }
     }
 
+    /* V1.3: a small reading-scale increase, including touch browsers with a wide reported viewport. */
+    @media (max-width: 900px), (pointer: coarse) {
+      body { font-size: 19px; line-height: 1.55; padding-bottom: calc(100px + env(safe-area-inset-bottom)); }
+      .app-main { width: 100% !important; max-width: none !important; padding-left: 13px !important; padding-right: 13px !important; }
+      header > div { max-width: none !important; }
+      header h1 { font-size: 17px !important; }
+      header .text-xs { font-size: 13.5px !important; }
+      .app-main > :not([hidden]) ~ :not([hidden]) { margin-top: 21px !important; }
+      .demo-banner { font-size: 15.3px; line-height: 1.5; }
+      .text-xs { font-size: 15.3px !important; line-height: 1.48 !important; }
+      .text-sm { font-size: 17px !important; line-height: 1.5 !important; }
+      .text-base { font-size: 19px !important; line-height: 1.48 !important; }
+      .text-2xl { font-size: 34px !important; line-height: 1.18 !important; }
+      .grid.grid-cols-2.gap-3 > .glass-card { padding: 19px !important; }
+      #view-radar .glass-card, #view-biometric .glass-card,
+      #view-cm-squad .glass-card, #view-vlink .glass-card,
+      #view-dispatch .glass-card { padding: 21.5px !important; }
+      #view-radar.space-y-4 > :not([hidden]) ~ :not([hidden]),
+      #view-biometric.space-y-4 > :not([hidden]) ~ :not([hidden]),
+      #view-cm-squad.space-y-4 > :not([hidden]) ~ :not([hidden]),
+      #view-vlink.space-y-4 > :not([hidden]) ~ :not([hidden]),
+      #view-dispatch.space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 21.5px !important; }
+      .queue-meta { font-size: 15.5px; }
+      .facility-detail { font-size: 16px; }
+      #view-radar button, #view-biometric button, #view-cm-squad button,
+      #view-vlink button, #view-dispatch button,
+      #view-radar a, #view-biometric a, #view-cm-squad a,
+      #view-vlink a, #view-dispatch a { min-height: 56px; font-size: 16.4px !important; }
+
+      .executive-tabs { display: grid !important; grid-template-columns: repeat(6, minmax(0, 1fr)) !important; gap: 10px !important; width: 100%; overflow: visible !important; }
+      .executive-tabs > button { grid-column: span 2 !important; min-width: 0; min-height: 88px; padding: 10px 6px !important; font-size: 15.3px !important; line-height: 1.22 !important; font-weight: 800; white-space: normal !important; }
+      .executive-tabs > button:nth-child(4), .executive-tabs > button:nth-child(5) { grid-column: span 3 !important; }
+
+      .mobile-bottom-nav { display: grid !important; position: fixed; z-index: 45; left: 0; right: 0; bottom: 0; grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 7px 8px calc(7px + env(safe-area-inset-bottom)); background: rgba(7,15,28,.96); border-top: 1px solid rgba(148,163,184,.18); backdrop-filter: blur(18px); }
+      .mobile-bottom-nav button { min-width: 0; min-height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 5px 3px; border-radius: 12px; color: #94a3b8; font-size: 12.5px; line-height: 1.15; font-weight: 700; }
+      .mobile-bottom-nav button i { font-size: 18px; }
+      .mobile-bottom-nav button.mobile-nav-active { color: #6ee7b7; background: rgba(5,150,105,.14); }
+
+      .letter-modal { align-items: flex-end !important; padding: 0 !important; }
+      .letter-sheet { width: 100% !important; max-width: none !important; max-height: 100dvh !important; overflow-x: hidden !important; overflow-y: auto; }
+      .letter-sheet .text-xs { font-size: 14.5px !important; }
+      .letter-sheet .text-sm { font-size: 16.5px !important; }
+      .letter-sheet button { min-height: 56px; }
+    }
+    @media (max-width: 430px) {
+      .grid.grid-cols-2.gap-3 .text-2xl { font-size: clamp(32px, 8.8vw, 34px) !important; }
+    }
+
   </style>
 </head>
 <body class="min-h-screen pb-12">
