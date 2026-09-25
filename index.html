@@ -1976,6 +1976,128 @@
       .internal-brief-open-btn { min-height:56px !important; font-size:16px !important; }
     }
 
+  
+    /* V2.5 readability + simple monetizable executive operations */
+    .doc-center-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+    .doc-center-stat {
+      display:grid;
+      grid-template-columns:auto 1fr;
+      grid-template-rows:auto auto;
+      gap:2px 9px;
+      align-items:center;
+      padding:12px;
+      border-radius:14px;
+      background:linear-gradient(145deg,rgba(15,31,50,.92),rgba(8,20,35,.96));
+      border:1px solid rgba(148,163,184,.12);
+    }
+    .doc-center-stat i {
+      grid-row:1 / span 2;
+      width:36px;height:36px;display:grid;place-items:center;
+      border-radius:11px;color:#6ee7b7;background:rgba(16,185,129,.12);
+    }
+    .doc-center-stat strong { color:#f8fafc;font-size:1.15rem;line-height:1; }
+    .doc-center-stat span { color:#94a3b8;font-size:.8rem; }
+    .doc-center-list { display:grid;gap:8px; }
+    .doc-center-row {
+      width:100%;
+      display:grid !important;
+      grid-template-columns:auto minmax(0,1fr) auto auto;
+      gap:10px;
+      align-items:center;
+      text-align:left;
+      padding:12px !important;
+      border-radius:13px;
+      border:1px solid rgba(148,163,184,.12);
+      background:rgba(7,18,34,.72);
+      color:white;
+    }
+    .doc-center-icon {
+      width:38px;height:38px;display:grid;place-items:center;border-radius:12px;flex:none;
+    }
+    .doc-center-icon.amber { color:#fbbf24;background:rgba(245,158,11,.12); }
+    .doc-center-icon.cyan { color:#67e8f9;background:rgba(6,182,212,.12); }
+    .doc-center-icon.violet { color:#c4b5fd;background:rgba(139,92,246,.12); }
+    .doc-center-copy { min-width:0;display:flex;flex-direction:column;gap:3px; }
+    .doc-center-copy strong { color:#f8fafc;font-size:.96rem;line-height:1.3; }
+    .doc-center-copy small { color:#94a3b8;font-size:.78rem;line-height:1.35; }
+    .doc-center-state {
+      color:#fde68a;background:rgba(120,53,15,.36);border:1px solid rgba(245,158,11,.20);
+      border-radius:999px;padding:4px 7px;font-size:.7rem;font-weight:800;
+    }
+    .verification-demo-card {
+      display:grid;
+      grid-template-columns:auto minmax(0,1fr);
+      gap:12px;
+      padding:14px;
+      border-radius:15px;
+      border:1px solid rgba(52,211,153,.22);
+      background:linear-gradient(145deg,rgba(6,78,59,.20),rgba(15,23,42,.78));
+    }
+    .verification-demo-icon {
+      width:52px;height:52px;display:grid;place-items:center;border-radius:14px;
+      color:#6ee7b7;background:rgba(16,185,129,.13);font-size:1.5rem;
+    }
+    .verification-demo-copy strong { display:block;color:#f8fafc;font-size:1rem;line-height:1.35; }
+    .verification-demo-copy p { margin:5px 0 9px;color:#cbd5e1;font-size:.86rem;line-height:1.5; }
+    .verification-chips { display:flex;flex-wrap:wrap;gap:6px; }
+    .verification-chips span {
+      padding:4px 7px;border-radius:999px;background:rgba(15,23,42,.72);
+      border:1px solid rgba(148,163,184,.14);color:#cbd5e1;font-size:.69rem;font-weight:700;
+    }
+
+    @media (max-width:900px), (pointer:coarse) {
+      .app-main { padding-left:12px !important;padding-right:12px !important; }
+      .text-xs { font-size:16px !important; line-height:1.5 !important; }
+      .text-sm { font-size:18px !important; line-height:1.55 !important; }
+      .text-base { font-size:20px !important; line-height:1.48 !important; }
+      .text-lg { font-size:22px !important; line-height:1.48 !important; }
+      .queue-meta { font-size:16px !important;line-height:1.55 !important; }
+      .executive-preface-copy { font-size:18px !important;line-height:1.55 !important; }
+      .preface-kicker { font-size:14px !important;line-height:1.35 !important; }
+      #view-radar button,#view-biometric button,#view-cm-squad button,
+      #view-vlink button,#view-dispatch button,
+      #view-radar a,#view-biometric a,#view-cm-squad a,#view-vlink a,#view-dispatch a {
+        min-height:58px !important;
+        font-size:17px !important;
+      }
+      .mobile-bottom-nav {
+        height:78px !important;
+        padding:6px 8px calc(6px + env(safe-area-inset-bottom)) !important;
+      }
+      .mobile-bottom-nav button {
+        min-height:62px !important;
+        font-size:13.5px !important;
+        line-height:1.15 !important;
+        gap:6px !important;
+      }
+      .mobile-bottom-nav button i { font-size:21px !important; }
+      .doc-center-stat { padding:14px; }
+      .doc-center-stat i { width:42px;height:42px;font-size:18px; }
+      .doc-center-stat strong { font-size:20px; }
+      .doc-center-stat span { font-size:14px; }
+      .doc-center-row { padding:14px !important;gap:11px; }
+      .doc-center-icon { width:44px;height:44px;font-size:17px; }
+      .doc-center-copy strong { font-size:17px; }
+      .doc-center-copy small { font-size:14px; }
+      .doc-center-state { font-size:12px;padding:5px 8px; }
+      .verification-demo-card { padding:16px; }
+      .verification-demo-icon { width:58px;height:58px;font-size:28px; }
+      .verification-demo-copy strong { font-size:18px; }
+      .verification-demo-copy p { font-size:16px;line-height:1.55; }
+      .verification-chips span { font-size:12px;padding:5px 8px; }
+      .review-back-btn { min-height:60px !important;font-size:18px !important; }
+      .review-close-btn { width:60px !important;height:60px !important;font-size:28px !important; }
+      .letter-sheet #letterRecipient { font-size:20px !important; }
+      .letter-sheet #letterSubject { font-size:21px !important; }
+      .formal-draft-copy { font-size:21px !important;line-height:1.78 !important; }
+      .formal-enclosures { font-size:19px !important;line-height:1.68 !important; }
+      .letter-actions button { min-height:68px !important;font-size:19px !important; }
+    }
+
   </style>
 </head>
 <body class="min-h-screen pb-12">
@@ -2159,6 +2281,51 @@
       </div>
 
     </div>
+
+
+      <!-- RED FLAG 4: DEVELOPMENT PROJECT / ADP -->
+      <div class="glass-card p-4 border-l-4 border-l-cyan-500 shadow-lg space-y-3">
+        <div class="flex items-start justify-between gap-2">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-extrabold uppercase bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded">ADP / Revamping</span>
+              <span class="text-xs font-semibold text-slate-400">THQ Demo Scheme</span>
+            </div>
+            <h3 class="text-base font-bold text-white mt-1.5 leading-snug">Milestone delayed — recovery plan needs review</h3>
+          </div>
+          <span class="text-xs font-bold text-amber-300 bg-amber-950 px-2.5 py-1 rounded-full flex-shrink-0">Amber</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          Synthetic project example: physical progress is 62% against an illustrative 72% milestone. No new project-management system is being created; only the exception requiring executive attention is surfaced.
+        </p>
+        <div class="queue-meta"><div><strong>Source:</strong> Demo project update</div><div><strong>Responsible:</strong> Project / executing officer</div><div><strong>Deadline:</strong> Illustrative 48 hours</div><div><strong>Close when:</strong> Recovery milestone and evidence are accepted</div></div>
+        <div class="ceo-action-lead"><span>CEO action now</span><strong>Review the recovery-plan request and decide whether the delay needs district intervention or escalation.</strong></div>
+        <button onclick="openLetterModal('ADP_DELAY')" class="w-full py-3 px-3 bg-cyan-700 hover:bg-cyan-600 text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2">
+          <i class="fa-solid fa-diagram-project"></i><span>Review project action draft</span>
+        </button>
+      </div>
+
+      <!-- RED FLAG 5: PHYSICAL INWARD APPLICATION -->
+      <div class="glass-card p-4 border-l-4 border-l-violet-500 shadow-lg space-y-3">
+        <div class="flex items-start justify-between gap-2">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-extrabold uppercase bg-violet-950 text-violet-300 border border-violet-800 px-2 py-0.5 rounded">Office Inward</span>
+              <span class="text-xs font-semibold text-slate-400">INW-DEMO-0241</span>
+            </div>
+            <h3 class="text-base font-bold text-white mt-1.5 leading-snug">Physical application awaiting disposal</h3>
+          </div>
+          <span class="text-xs font-bold text-violet-300 bg-violet-950 px-2.5 py-1 rounded-full flex-shrink-0">Due today</span>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          Synthetic inward example: a paper application has been diarized, assigned and scanned. It appears here only because the due time is reached and a decision is still pending.
+        </p>
+        <div class="queue-meta"><div><strong>Inward:</strong> INW-DEMO-0241</div><div><strong>Assigned:</strong> Concerned branch officer</div><div><strong>Latest movement:</strong> Under review</div><div><strong>Close when:</strong> Decision / response reference is recorded</div></div>
+        <div class="ceo-action-lead"><span>CEO action now</span><strong>Review the disposal note and decide whether to approve, return for clarification or assign further action.</strong></div>
+        <button onclick="openLetterModal('INWARD_APPLICATION')" class="w-full py-3 px-3 bg-violet-700 hover:bg-violet-600 text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2">
+          <i class="fa-solid fa-folder-open"></i><span>Review disposal draft</span>
+        </button>
+      </div>
 
     <!-- ==================== TAB 2: BIOMETRIC ATTENDANCE ==================== -->
     <div id="view-biometric" class="executive-view executive-home">
@@ -2404,37 +2571,56 @@
 
     <!-- ==================== TAB 5: ORDERS VAULT ==================== -->
     <div id="view-dispatch" class="space-y-4 hidden">
-      
-      <div class="glass-card p-4 border border-slate-800 space-y-3">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+      <div class="glass-card p-4 border border-slate-800 space-y-4">
+        <div class="flex items-start justify-between gap-3 border-b border-slate-800 pb-3">
           <div>
-            <div class="preface-kicker">DOCUMENT CONTROL &amp; APPROVAL</div>
-            <h2 class="text-base font-bold text-white">Orders &amp; Approvals — prototype</h2>
-            <div class="text-sm text-slate-300 mt-1 executive-preface-copy">Review near-send-ready drafts and follow their lifecycle from CEO review to future authorized QR-verifiable dispatch, response, evidence and closure.</div>
+            <div class="preface-kicker">EXECUTIVE DOCUMENT CENTER</div>
+            <h2 class="text-base font-bold text-white">Office control without another complex system</h2>
+            <div class="text-sm text-slate-300 mt-1 executive-preface-copy">One place for items already requiring executive review: drafts, inward applications, project notes and future QR-verifiable orders.</div>
           </div>
-          <span class="text-xs font-bold text-amber-300 bg-amber-950 px-2.5 py-1 rounded border border-amber-800">Simulated</span>
+          <span class="text-xs font-bold text-amber-300 bg-amber-950 px-2.5 py-1 rounded border border-amber-800">Demo</span>
         </div>
 
-        <div class="space-y-2.5 text-xs sm:text-sm">
-          <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
-            <div>
-              <div class="font-bold text-white">DEMO/895 — Attendance explanation draft</div>
-              <div class="text-xs text-slate-400 mt-0.5">THQ Chaubara • Awaiting evidence and CEO review</div>
-            </div>
-            <span class="text-xs font-bold text-amber-400">In Progress</span>
-          </div>
+        <div class="doc-center-grid">
+          <div class="doc-center-stat"><i class="fa-solid fa-file-signature"></i><strong>3</strong><span>Drafts</span></div>
+          <div class="doc-center-stat"><i class="fa-solid fa-inbox"></i><strong>1</strong><span>Inward due</span></div>
+          <div class="doc-center-stat"><i class="fa-solid fa-diagram-project"></i><strong>1</strong><span>Project alert</span></div>
+          <div class="doc-center-stat"><i class="fa-solid fa-qrcode"></i><strong>QR</strong><span>Future verify</span></div>
+        </div>
 
-          <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
-            <div>
-              <div class="font-bold text-white">DEMO/894 — ASV escalation draft</div>
-              <div class="text-xs text-slate-400 mt-0.5">MS Chaubara • No official dispatch</div>
+        <div class="doc-center-list">
+          <button type="button" onclick="openLetterModal('BIOMETRIC_CHAUBARA')" class="doc-center-row">
+            <span class="doc-center-icon amber"><i class="fa-solid fa-user-clock"></i></span>
+            <span class="doc-center-copy"><strong>Attendance reconciliation draft</strong><small>THQ Chaubara · awaiting CEO review</small></span>
+            <span class="doc-center-state">Draft</span><i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <button type="button" onclick="openLetterModal('ADP_DELAY')" class="doc-center-row">
+            <span class="doc-center-icon cyan"><i class="fa-solid fa-diagram-project"></i></span>
+            <span class="doc-center-copy"><strong>ADP / revamping recovery note</strong><small>Illustrative delayed milestone · executive decision</small></span>
+            <span class="doc-center-state">Action</span><i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <button type="button" onclick="openLetterModal('INWARD_APPLICATION')" class="doc-center-row">
+            <span class="doc-center-icon violet"><i class="fa-solid fa-folder-open"></i></span>
+            <span class="doc-center-copy"><strong>Physical inward application</strong><small>INW-DEMO-0241 · due for disposal</small></span>
+            <span class="doc-center-state">Due</span><i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="verification-demo-card">
+          <div class="verification-demo-icon"><i class="fa-solid fa-qrcode"></i></div>
+          <div class="verification-demo-copy">
+            <div class="internal-brief-kicker">FUTURE AUTHORIZED ORDER FLOW</div>
+            <strong>Order ID + document hash + QR verification</strong>
+            <p>QR is for verification, not encryption. Sensitive documents would remain protected by role-based access, encrypted transport/storage and an audit trail.</p>
+            <div class="verification-chips">
+              <span>DEMO-ORD-001</span><span>Hash: 7A3F…91C2</span><span>Not issued</span>
             </div>
-            <span class="text-xs font-bold text-amber-300">Demo only</span>
           </div>
         </div>
       </div>
-
-    </div>
+    </div>>
 
   </main>
 
@@ -2453,7 +2639,7 @@
       <i class="fa-solid fa-chart-line"></i><span>Brief</span>
     </button>
     <button type="button" data-mobile-tab="dispatch" onclick="switchTab('dispatch')">
-      <i class="fa-solid fa-signature"></i><span>Orders</span>
+      <i class="fa-solid fa-folder-tree"></i><span>Office</span>
     </button>
   </nav>
 
@@ -2654,6 +2840,42 @@
           "Evidence of restored availability and Medical Superintendent's response"
         ]
       },
+      ADP_DELAY: {
+        subject: "Submission of recovery plan for delayed development milestone — illustrative revamping scheme",
+        recipient: "Concerned Project / Executing Officer, District Health Authority, Layyah",
+        formalBody: [
+          "The latest project update placed before this office shows that the illustrative revamping scheme is behind its scheduled physical milestone. The present demo position reflects 62% physical progress against an illustrative 72% milestone and therefore requires a verified recovery plan before further executive escalation.",
+          "You are requested to confirm the approved work scope, current physical and financial progress, the milestone presently due, the reason for delay, any dependency on funds, approvals or contractor performance, and the officer or agency responsible for the next corrective step.",
+          "The recovery plan should identify the actions already taken, the revised near-term milestone, the responsible officer or executing agency, the evidence by which progress will be verified, and the date by which the project is expected to return to the approved trajectory.",
+          "Any issue requiring district-level or provincial intervention should be stated separately and precisely so that the CEO can distinguish a local execution problem from an external dependency.",
+          "The item may be treated as closed only after the revised milestone is verified through the approved project record and supporting evidence."
+        ],
+        enclosures: [
+          "Latest verified physical-progress update",
+          "Financial-progress / release position",
+          "Current milestone and delay note",
+          "Recovery plan with responsible officer / agency and target date",
+          "Supporting inspection / progress evidence"
+        ]
+      },
+      INWARD_APPLICATION: {
+        subject: "Disposal of physical inward application — INW-DEMO-0241",
+        recipient: "Concerned Branch Officer, District Health Authority, Layyah",
+        formalBody: [
+          "A physical application bearing demo inward reference INW-DEMO-0241 has reached its illustrative due time and remains pending final disposal. The purpose of this note is to ensure that the file is not lost in manual movement and that the responsible branch records a clear decision trail.",
+          "Please verify the subject matter, completeness of the application, the branch or officer presently holding the file, any clarification already sought, and the action that remains necessary for disposal.",
+          "Where the matter can be decided at branch level, the final response or disposal reference may be recorded against the inward entry. Where CEO approval is required, the file should be placed with a concise decision note stating the issue, available options, recommended action and any supporting document required for approval.",
+          "The application should remain traceable through its inward number, latest movement, assigned officer, due date and final response reference. Only the minimum necessary applicant information should be visible outside the authorized file view.",
+          "Closure should occur only after the outgoing response or decision reference is recorded and the physical file movement is reconciled with the digital inward record."
+        ],
+        enclosures: [
+          "Inward / diary reference",
+          "Scanned first page and authorized supporting documents",
+          "Current file-movement history",
+          "Decision note / clarification, where required",
+          "Final response or disposal reference"
+        ]
+      },
       BIOMETRIC_CHAUBARA: {
         subject: "Reconciliation of six unmatched Medical Officer duty shifts — THQ Hospital Chaubara",
         recipient: "Medical Superintendent, THQ Hospital Chaubara",
@@ -2754,7 +2976,9 @@
         ASV_CHAUBARA: 'Demo draft — Medicine / Chaubara',
         BIOMETRIC_CHAUBARA: 'Demo draft — Attendance / Chaubara',
         MNHC_ABSENT: 'Demo draft — Facility opening',
-        CM_COMPLAINT: 'Demo draft — Complaint / Karor'
+        CM_COMPLAINT: 'Demo draft — Complaint / Karor',
+        ADP_DELAY: 'Demo draft — ADP / project recovery',
+        INWARD_APPLICATION: 'Demo draft — Office inward disposal'
       };
       document.getElementById('letterDispatchNo').textContent = refLabels[type] || 'Demo draft';
       document.getElementById('letterDispatchNo').dataset.draftType = type;
