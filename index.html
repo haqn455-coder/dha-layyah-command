@@ -1451,6 +1451,261 @@
       }
     }
 
+  
+    /* ==========================================================
+       V2.4 EXECUTIVE MOBILE ACCEPTANCE — readable, semantic, obvious
+       ========================================================== */
+    .preface-kicker {
+      color:#67e8f9;
+      font-size:.72rem;
+      line-height:1.2;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+      font-weight:900;
+      margin-bottom:5px;
+    }
+    .executive-preface-copy {
+      max-width:68ch;
+      line-height:1.62;
+    }
+    .attendance-preface { color:#cbd5e1; margin:9px 0 0; }
+    .ceo-action-lead {
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:8px;
+      align-items:start;
+      padding:10px 11px;
+      border-radius:12px;
+      background:linear-gradient(135deg,rgba(8,145,178,.12),rgba(16,185,129,.08));
+      border:1px solid rgba(103,232,249,.16);
+    }
+    .ceo-action-lead span {
+      color:#67e8f9;
+      font-size:.72rem;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      white-space:nowrap;
+    }
+    .ceo-action-lead strong {
+      color:#f8fafc;
+      font-size:.88rem;
+      line-height:1.45;
+    }
+
+    .review-exit-bar {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .review-back-btn,
+    .review-close-btn {
+      border:0;
+      cursor:pointer;
+      transition:transform .15s ease, background .15s ease;
+    }
+    .review-back-btn {
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      min-height:46px;
+      padding:0 15px;
+      border-radius:12px;
+      background:#e2e8f0;
+      color:#0f172a;
+      font-weight:850;
+      font-size:.92rem;
+    }
+    .review-close-btn {
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      flex:none;
+      border-radius:50%;
+      background:#fee2e2;
+      color:#b91c1c;
+      font-size:1.25rem;
+      box-shadow:0 3px 10px rgba(127,29,29,.12);
+    }
+    .review-back-btn:active,
+    .review-close-btn:active { transform:scale(.97); }
+
+    @media (max-width:900px), (pointer:coarse) {
+      .app-main {
+        padding-left:12px !important;
+        padding-right:12px !important;
+        padding-bottom:94px !important;
+      }
+
+      /* All primary destinations: comfortable executive reading scale. */
+      #view-radar,
+      #view-biometric,
+      #view-cm-squad,
+      #view-vlink,
+      #view-dispatch {
+        font-size:16px !important;
+        line-height:1.58 !important;
+      }
+      #view-radar .text-xs,
+      #view-biometric .text-xs,
+      #view-cm-squad .text-xs,
+      #view-vlink .text-xs,
+      #view-dispatch .text-xs {
+        font-size:14px !important;
+        line-height:1.5 !important;
+      }
+      #view-radar .text-sm,
+      #view-biometric .text-sm,
+      #view-cm-squad .text-sm,
+      #view-vlink .text-sm,
+      #view-dispatch .text-sm {
+        font-size:16px !important;
+        line-height:1.58 !important;
+      }
+      #view-radar .text-base,
+      #view-biometric .text-base,
+      #view-cm-squad .text-base,
+      #view-vlink .text-base,
+      #view-dispatch .text-base {
+        font-size:19px !important;
+        line-height:1.35 !important;
+      }
+      #view-radar h2, #view-biometric h2, #view-cm-squad h2, #view-vlink h2, #view-dispatch h2 {
+        font-size:20px !important;
+        line-height:1.32 !important;
+      }
+      #view-radar h3, #view-biometric h3, #view-cm-squad h3, #view-vlink h3, #view-dispatch h3 {
+        font-size:17px !important;
+        line-height:1.38 !important;
+      }
+      .preface-kicker { font-size:12.5px !important; }
+      .executive-preface-card,
+      #view-cm-squad > .glass-card:first-child,
+      #view-vlink > .glass-card:first-child,
+      #view-dispatch > .glass-card:first-child {
+        padding:17px !important;
+      }
+
+      .queue-meta {
+        grid-template-columns:1fr !important;
+        gap:7px !important;
+        font-size:14px !important;
+        line-height:1.45 !important;
+      }
+      .queue-meta > div { padding:9px 10px !important; }
+      .ceo-action-lead {
+        grid-template-columns:1fr !important;
+        gap:3px !important;
+        padding:12px !important;
+      }
+      .ceo-action-lead span { font-size:12.5px !important; }
+      .ceo-action-lead strong { font-size:15.5px !important; line-height:1.5 !important; }
+
+      /* Facility list should remain readable even when collapsed. */
+      .facility-accordion-trigger { min-height:58px !important; }
+      .facility-name { font-size:14.5px !important; }
+      .facility-status { font-size:12px !important; padding:5px 8px !important; }
+      .facility-detail-grid span, .critical-snapshot span { font-size:12px !important; }
+      .facility-detail-grid strong, .critical-snapshot strong { font-size:14px !important; }
+      .critical-note { font-size:14px !important; line-height:1.5 !important; }
+      .critical-review-btn { min-height:50px !important; font-size:15px !important; }
+
+      /* Bottom nav becomes an obvious primary control, not tiny metadata. */
+      .mobile-bottom-nav {
+        height:78px !important;
+        padding:7px 8px calc(7px + env(safe-area-inset-bottom)) !important;
+        grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+      }
+      .mobile-bottom-nav button {
+        min-height:62px !important;
+        gap:5px !important;
+        font-size:13px !important;
+        line-height:1.08 !important;
+        font-weight:800 !important;
+        padding:5px 2px !important;
+        border-radius:13px !important;
+      }
+      .mobile-bottom-nav button i {
+        font-size:20px !important;
+        width:28px;
+        height:25px;
+        display:grid;
+        place-items:center;
+      }
+      .mobile-bottom-nav button span {
+        white-space:normal !important;
+        text-align:center;
+      }
+      .mobile-bottom-nav button.mobile-nav-active {
+        color:#a7f3d0 !important;
+        background:linear-gradient(145deg,rgba(6,95,70,.72),rgba(6,78,59,.42)) !important;
+        box-shadow:inset 1px 1px 0 rgba(255,255,255,.07),0 5px 14px rgba(16,185,129,.14) !important;
+      }
+
+      /* Full-screen review: readable document + unmistakable exit. */
+      .letter-sheet {
+        padding:0 18px calc(96px + env(safe-area-inset-bottom)) !important;
+      }
+      .review-exit-bar {
+        position:sticky;
+        top:0;
+        z-index:12;
+        margin:0 -18px 16px !important;
+        padding:10px 18px !important;
+        background:rgba(255,255,255,.985);
+        border-bottom:1px solid #e2e8f0;
+        box-shadow:0 5px 16px rgba(15,23,42,.07);
+      }
+      .review-back-btn {
+        min-height:50px !important;
+        font-size:15.5px !important;
+        padding:0 16px !important;
+      }
+      .review-close-btn {
+        width:50px !important;
+        height:50px !important;
+        font-size:22px !important;
+      }
+      .letter-sheet .text-xs {
+        font-size:15px !important;
+        line-height:1.55 !important;
+      }
+      .letter-sheet .text-sm {
+        font-size:17px !important;
+        line-height:1.65 !important;
+      }
+      .letter-sheet #letterRecipient {
+        font-size:17px !important;
+        line-height:1.5 !important;
+      }
+      .letter-sheet #letterSubject {
+        font-size:18px !important;
+        line-height:1.5 !important;
+        font-weight:850 !important;
+      }
+      .formal-draft-copy {
+        font-size:18.5px !important;
+        line-height:1.72 !important;
+      }
+      .formal-draft-copy p {
+        margin-bottom:18px !important;
+      }
+      .formal-enclosures {
+        font-size:16px !important;
+        line-height:1.6 !important;
+      }
+      .letter-signature .text-xs {
+        font-size:14px !important;
+      }
+      .letter-actions button {
+        min-height:58px !important;
+        font-size:16px !important;
+      }
+    }
+
   </style>
 </head>
 <body class="min-h-screen pb-12">
@@ -1503,7 +1758,7 @@
       <!-- Critical Red Flags -->
       <div onclick="switchTab('radar')" class="glass-card p-3.5 border-l-4 border-l-red-500 cursor-pointer active:scale-95 transition-all">
         <div class="flex items-center justify-between text-xs font-semibold text-slate-400">
-          <span>CEO Queue</span>
+          <span>CEO Actions</span>
           <i class="fa-solid fa-triangle-exclamation text-red-400 text-sm"></i>
         </div>
         <div class="text-2xl font-black text-red-400 mt-1">03 Active</div>
@@ -1534,9 +1789,10 @@
 
     <!-- ==================== TAB 1: MORNING RADAR ==================== -->
     <div id="view-radar" class="space-y-4 hidden">
-      <div class="glass-card p-4 border-l-4 border-l-red-500">
-        <h2 class="text-base font-bold">CEO Action Queue <span class="text-xs text-amber-300">3 synthetic examples</span></h2>
-        <p class="text-sm text-slate-300 mt-1">Only unresolved, overdue, safety critical or CEO decision requiring items appear here. Source, owner and due time must be verified before action.</p>
+      <div class="glass-card p-4 border-l-4 border-l-red-500 executive-preface-card">
+        <div class="preface-kicker">CEO DECISION WORKSPACE</div>
+        <h2 class="text-base font-bold">CEO Action Center <span class="text-xs text-amber-300">3 synthetic examples</span></h2>
+        <p class="text-sm text-slate-200 mt-1 executive-preface-copy">Only matters that need your review, approval or escalation appear here. Each item tells you what happened, who owns it, when it is due, what you need to decide now, and what evidence will close it.</p>
       </div>
 
       <!-- RED FLAG 1: THQ CHAUBARA ASV ZERO STOCK -->
@@ -1554,7 +1810,8 @@
         <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
           Synthetic case: facility reports zero ASV, local replenishment remains unresolved and patient safety may be affected. Verify stock and escalation before any directive.
         </p>
-        <div class="queue-meta"><div><strong>Source:</strong> Demo stock escalation</div><div><strong>Severity:</strong> Critical</div><div><strong>Officer:</strong> MS THQ Chaubara</div><div><strong>Due:</strong> Illustrative 6 hours</div><div><strong>Closure:</strong> Confirm replenishment evidence</div></div>
+        <div class="queue-meta"><div><strong>Source:</strong> Demo stock escalation</div><div><strong>Severity:</strong> Critical</div><div><strong>Responsible:</strong> MS THQ Chaubara</div><div><strong>Deadline:</strong> Illustrative 6 hours</div><div><strong>Close when:</strong> Replenishment evidence is verified</div></div>
+        <div class="ceo-action-lead"><span>CEO action now</span><strong>Review the verification/restoration draft and decide whether to send it to the Medical Superintendent.</strong></div>
 
         <!-- LARGE TOUCH BUTTONS -->
         <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-800">
@@ -1584,7 +1841,8 @@
         <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
           Synthetic AC inspection example: facility closed at the illustrative 09:00 cutoff. Confirm roster, punch, approved leave and emergency cover.
         </p>
-        <div class="queue-meta"><div><strong>Source:</strong> Demo AC inspection</div><div><strong>Severity:</strong> High</div><div><strong>Officer:</strong> DDHO Layyah</div><div><strong>Due:</strong> Illustrative 12 hours</div><div><strong>Closure:</strong> Opening and cover evidence</div></div>
+        <div class="queue-meta"><div><strong>Source:</strong> Demo AC inspection</div><div><strong>Severity:</strong> High</div><div><strong>Responsible:</strong> DDHO Layyah</div><div><strong>Deadline:</strong> Illustrative 12 hours</div><div><strong>Close when:</strong> Opening and coverage evidence is verified</div></div>
+        <div class="ceo-action-lead"><span>CEO action now</span><strong>Review the facility-opening verification draft and decide whether a formal response is required.</strong></div>
 
         <!-- LARGE TOUCH BUTTONS -->
         <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-800">
@@ -1614,7 +1872,8 @@
         <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
           Synthetic complaint example: medicine access grievance requires a verified response and closure evidence before the illustrative deadline.
         </p>
-        <div class="queue-meta"><div><strong>Source:</strong> Demo complaint signal</div><div><strong>Severity:</strong> Time critical</div><div><strong>Officer:</strong> MS THQ Karor</div><div><strong>Due:</strong> Illustrative 2h 45m</div><div><strong>Closure:</strong> Patient response and portal proof</div></div>
+        <div class="queue-meta"><div><strong>Source:</strong> Demo complaint signal</div><div><strong>Severity:</strong> Time critical</div><div><strong>Responsible:</strong> MS THQ Karor</div><div><strong>Deadline:</strong> Illustrative 2h 45m</div><div><strong>Close when:</strong> Patient response and portal evidence are verified</div></div>
+        <div class="ceo-action-lead"><span>CEO action now</span><strong>Review the complaint-resolution draft and decide whether to send it for immediate factual response.</strong></div>
 
         <!-- LARGE TOUCH BUTTONS -->
         <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-800">
@@ -1641,6 +1900,7 @@
           </div>
           <span class="exec-live-pill"><span></span> Demo</span>
         </div>
+        <p class="executive-preface-copy attendance-preface">Start here to confirm that facilities are open, staffing is reconciled and emergency/casualty coverage is intact. Only material unresolved exceptions should reach your attention.</p>
         <div class="exec-mini-grid">
           <div class="exec-mini-stat">
             <i class="fa-solid fa-hospital"></i>
@@ -1762,8 +2022,9 @@
     <!-- ==================== TAB 3: EXTERNAL INSPECTIONS ==================== -->
     <div id="view-cm-squad" class="space-y-4 hidden">
       <div class="glass-card p-4 border-l-4 border-l-blue-500 space-y-2">
+        <div class="preface-kicker">VERIFIED FINDINGS &amp; FOLLOW-UP</div>
         <h2 class="text-base font-bold">External Monitoring &amp; Inspection</h2>
-        <p class="text-sm text-slate-300">Demo DC/AC/provincial findings → accountable officer response → evidence review → compliance closure. No inspection feed is connected.</p>
+        <p class="text-sm text-slate-200 executive-preface-copy">Use this screen for inspection findings that still need an accountable response, evidence review or escalation. It is not a raw inspection feed; it is the executive follow-up view.</p>
         <div class="queue-meta"><div><strong>Source:</strong> Illustrative AC finding</div><div><strong>Owner:</strong> DDHO Layyah</div><div><strong>Response:</strong> Pending review</div><div><strong>Compliance:</strong> Open until evidence verified</div></div>
       </div>
       
@@ -1832,11 +2093,12 @@
       
       <div class="glass-card p-4 border-l-4 border-l-blue-500 space-y-3">
         <div class="flex items-center justify-between">
-          <h2 class="text-sm font-bold text-white uppercase tracking-wider">Provincial Review Brief</h2>
+          <h2 class="text-base font-bold text-white">Provincial Review Brief</h2>
           <span class="text-xs font-bold bg-blue-950 text-blue-300 px-2.5 py-1 rounded">Demo KPIs</span>
         </div>
-        <p class="text-xs sm:text-sm text-slate-300">
-          Illustrative district KPIs, gaps and briefing points. Replace with verified evidence before a real review.
+        <div class="preface-kicker">EXECUTIVE REVIEW PREPARATION</div>
+        <p class="text-sm text-slate-200 executive-preface-copy">
+          Prepare a concise, evidence-backed district position for senior or provincial review: what is performing, what remains unresolved, what the district has already done, and what support or decision is still required.
         </p>
 
         <div class="space-y-3 text-xs sm:text-sm">
@@ -1870,8 +2132,9 @@
       <div class="glass-card p-4 border border-slate-800 space-y-3">
         <div class="flex items-center justify-between border-b border-slate-800 pb-3">
           <div>
+            <div class="preface-kicker">DOCUMENT CONTROL &amp; APPROVAL</div>
             <h2 class="text-base font-bold text-white">Orders &amp; Approvals — prototype</h2>
-            <div class="text-xs text-slate-400 mt-0.5">Draft → Review → CEO Authenticate → QR/Hash → Dispatch → Compliance Due → Closed (future production workflow)</div>
+            <div class="text-sm text-slate-300 mt-1 executive-preface-copy">Review near-send-ready drafts and follow their lifecycle from CEO review to future authorized QR-verifiable dispatch, response, evidence and closure.</div>
           </div>
           <span class="text-xs font-bold text-amber-300 bg-amber-950 px-2.5 py-1 rounded border border-amber-800">Simulated</span>
         </div>
@@ -1905,7 +2168,7 @@
       <i class="fa-solid fa-fingerprint"></i><span>Attendance</span>
     </button>
     <button type="button" data-mobile-tab="radar" onclick="switchTab('radar')">
-      <i class="fa-solid fa-list-check"></i><span>Queue</span>
+      <i class="fa-solid fa-bullseye"></i><span>CEO Actions</span>
     </button>
     <button type="button" data-mobile-tab="cm-squad" onclick="switchTab('cm-squad')">
       <i class="fa-solid fa-clipboard-check"></i><span>Inspection</span>
@@ -1922,10 +2185,15 @@
   <div id="letterModal" class="letter-modal fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 hidden">
     <div class="letter-sheet bg-white text-slate-900 rounded-2xl max-w-lg w-full p-5 sm:p-7 max-h-[90vh] overflow-y-auto shadow-2xl relative">
       
-      <!-- Close Button -->
-      <button onclick="closeLetterModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-lg transition-all">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
+      <!-- Clear mobile exit controls -->
+      <div class="review-exit-bar">
+        <button onclick="closeLetterModal()" class="review-back-btn" type="button">
+          <i class="fa-solid fa-arrow-left"></i><span>Back to Dashboard</span>
+        </button>
+        <button onclick="closeLetterModal()" class="review-close-btn" type="button" aria-label="Close review">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
 
       <!-- GOVERNMENT-STYLE DEMO LETTERHEAD — PROTOTYPE ONLY -->
       <div class="text-center border-b-2 border-slate-900 pb-3">
@@ -1950,7 +2218,7 @@
       <!-- LETTER BODY -->
       <div class="mt-3 text-xs sm:text-sm text-slate-800 space-y-2.5 leading-relaxed">
         <div>
-          <strong>To:</strong><br>
+          <strong id="recipientLabel">To:</strong><br>
           <span id="letterRecipient" class="font-semibold text-slate-900">The Medical Superintendent, THQ Hospital Chaubara.</span>
         </div>
         <div>
@@ -1972,10 +2240,10 @@
         </div>
         <div class="text-center">
           <div class="font-serif italic font-bold text-blue-900 text-lg tracking-wide border-b border-blue-900 pb-0.5">
-            For CEO review
+            <span id="reviewStamp">For CEO review</span>
           </div>
-          <div class="text-xs font-bold text-slate-900 mt-1">Chief Executive Officer</div>
-          <div class="text-xs text-slate-600">District Health Authority, Layyah</div>
+          <div id="reviewRole" class="text-xs font-bold text-slate-900 mt-1">Chief Executive Officer</div>
+          <div id="reviewOrg" class="text-xs text-slate-600">District Health Authority, Layyah</div>
         </div>
       </div>
 
@@ -1986,7 +2254,7 @@
         </button>
         <button onclick="confirmAndDispatchWhatsApp()" class="w-2/3 py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg flex items-center justify-center space-x-2">
           <i class="fa-brands fa-whatsapp text-lg"></i>
-          <span>Review & share demo draft</span>
+          <span id="shareDraftLabel">Review &amp; share demo draft</span>
         </button>
       </div>
 
@@ -2064,7 +2332,7 @@
           "You are requested to personally confirm the present status of essential emergency medicines and supplies, the approved duty roster, the actual emergency/casualty staffing available during the relevant period, and any alternate coverage arrangement made to maintain uninterrupted services.",
           "Your response should clearly identify each verified gap, the officer responsible for corrective action, the action already taken, the time by which the gap is expected to be fully resolved, and whether any patient service was delayed, interrupted or placed at risk.",
           "Where the reported gap is found to be incorrect, already rectified, or explained by an approved administrative arrangement, the supporting record may be attached so that the exception can be closed on evidence. Where the gap remains unresolved, an immediate corrective plan may be submitted for review.",
-          "The response and supporting evidence may be furnished within the due time displayed against this item in the CEO Action Queue."
+          "The response and supporting evidence may be furnished within the due time displayed against this item in the CEO Action Center."
         ],
         enclosures: [
           "Current emergency medicine / essential supply position",
@@ -2075,6 +2343,7 @@
         ]
       },
       CM_DOSSIER: {
+        internalBrief: true,
         subject: "District readiness and unresolved exceptions — Provincial Review Brief",
         recipient: "Chief Executive Officer, District Health Authority, Layyah",
         formalBody: [
@@ -2099,7 +2368,7 @@
           "You are requested to confirm the physical ASV stock presently available in the hospital pharmacy and emergency/casualty areas, including usable quantity, batch/expiry position where relevant to stock verification, and whether any stock is available through the district store or another authorized nearby facility for immediate transfer.",
           "If ASV is presently unavailable, please state the reason for the shortage, the date and reference of any requisition or transfer request already initiated, the officer responsible for follow-up, the immediate interim arrangement for continuity of emergency service, and the expected time for restoration of stock.",
           "Please confirm whether any patient has been affected by the reported shortage or whether any referral, transfer or delay in emergency management occurred because of non-availability. Any such service impact should be reported separately and without delay.",
-          "The matter may be treated as closed only after restored availability is supported by verifiable stock / receipt / transfer evidence and the responsible officer's response is placed on record. The response may be furnished within the due time displayed in the CEO Action Queue."
+          "The matter may be treated as closed only after restored availability is supported by verifiable stock / receipt / transfer evidence and the responsible officer's response is placed on record. The response may be furnished within the due time displayed in the CEO Action Center."
         ],
         enclosures: [
           "Physical ASV stock verification from pharmacy and emergency/casualty",
@@ -2117,7 +2386,7 @@
           "You are therefore requested to personally verify each of the six flagged shifts against the approved duty roster, sanctioned leave, official duty/deputation/transfer record, and the actual emergency/casualty coverage provided during the relevant shift.",
           "A consolidated factual report may be submitted for each flagged shift showing: (i) name and designation of the officer, (ii) scheduled duty timing, (iii) biometric attendance status, (iv) reason for non-punch, if any, (v) substitute or coverage arrangement, and (vi) whether any service gap occurred.",
           "Where reconciliation establishes an unauthorized absence or an uncovered duty shift, further action may be initiated strictly in accordance with the applicable rules after due verification, and the action taken may be reported to this office. Where the discrepancy is explained by approved leave, official duty, a technical attendance issue, or verified alternate coverage, the supporting record may be attached for closure.",
-          "Please also confirm specifically whether emergency and casualty services remained continuously covered during the reviewed period and report any patient-service impact, if identified. The response may be furnished within the due time displayed against this item in the CEO Action Queue."
+          "Please also confirm specifically whether emergency and casualty services remained continuously covered during the reviewed period and report any patient-service impact, if identified. The response may be furnished within the due time displayed against this item in the CEO Action Center."
         ],
         enclosures: [
           "Approved duty roster for the reviewed period",
@@ -2135,7 +2404,7 @@
           "You are requested to confirm the actual opening time of the facility on the relevant date, the staff members rostered for duty, their attendance / approved leave status, and the arrangement made for patient coverage during any period in which the assigned staff member was not available.",
           "If the facility opened late, remained closed, or operated without the required coverage, please state the reason, duration of the service gap, number and type of services affected, the officer responsible, and the immediate corrective action taken to restore normal functioning.",
           "Where the monitoring signal is explained by an approved leave arrangement, official duty, technical reporting issue, or verified alternate coverage, the relevant supporting record may be attached for evidence-based closure.",
-          "Please submit the verified factual position, corrective action and supporting evidence within the due time displayed against this item in the CEO Action Queue."
+          "Please submit the verified factual position, corrective action and supporting evidence within the due time displayed against this item in the CEO Action Center."
         ],
         enclosures: [
           "Facility opening / monitoring evidence for the relevant date and time",
@@ -2153,7 +2422,7 @@
           "You are requested to verify the complaint details, the medicine prescribed, the stock position at the relevant time, the dispensing / pharmacy record, and whether the medicine was available, temporarily out of stock, or unavailable for another documented reason.",
           "If the medicine was unavailable, please state the cause, the replenishment or authorized alternative arrangement initiated, the officer responsible, and the expected or actual restoration time. Please also confirm whether the patient was contacted and whether the immediate service issue was resolved.",
           "Where the complaint is found to be inaccurate, duplicated or already resolved, the supporting record may be attached for closure. Where a genuine service failure is established, the corrective action and any preventive measure to reduce recurrence may be recorded.",
-          "The case may be closed only after the facility response, medicine-availability evidence and patient follow-up are documented and the complaint status is updated in the relevant source system. The response may be furnished within the due time displayed in the CEO Action Queue."
+          "The case may be closed only after the facility response, medicine-availability evidence and patient follow-up are documented and the complaint status is updated in the relevant source system. The response may be furnished within the due time displayed in the CEO Action Center."
         ],
         enclosures: [
           "Complaint / portal reference and current status",
@@ -2171,6 +2440,13 @@
       if (!modal || !draft) return;
       document.getElementById('letterSubject').textContent = draft.subject;
       document.getElementById('letterRecipient').textContent = draft.recipient;
+
+      const isInternalBrief = Boolean(draft.internalBrief);
+      document.getElementById('recipientLabel').textContent = isInternalBrief ? 'Prepared for:' : 'To:';
+      document.getElementById('reviewStamp').textContent = isInternalBrief ? 'Internal executive brief' : 'Ready for CEO review';
+      document.getElementById('reviewRole').textContent = isInternalBrief ? 'Prepared for CEO review' : 'Chief Executive Officer';
+      document.getElementById('reviewOrg').textContent = 'District Health Authority, Layyah';
+      document.getElementById('shareDraftLabel').textContent = isInternalBrief ? 'Review & share demo brief' : 'Review & share demo draft';
 
       const content = document.getElementById('letterContent');
       if (Array.isArray(draft.formalBody)) {
@@ -2221,7 +2497,8 @@
             ? draft.formalBody.join('\n\n') + '\n\nRecords to accompany the response:\n- ' + (draft.enclosures || []).join('\n- ')
             : draft.issue + '\n\nRequired response:\n- ' + draft.response.join('\n- ') + '\n\nClosure evidence:\n' + draft.closure)
         : document.getElementById('letterContent').textContent;
-      const text = 'PROTOTYPE DEMO — NOT AN OFFICIAL DISPATCH\n' + subject + '\nTo: ' + recipient + '\n\n' + body;
+      const recipientPrefix = draft && draft.internalBrief ? 'Prepared for: ' : 'To: ';
+      const text = 'PROTOTYPE DEMO — NOT AN OFFICIAL DISPATCH\n' + subject + '\n' + recipientPrefix + recipient + '\n\n' + body;
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank', 'noopener');
       closeLetterModal();
     }
