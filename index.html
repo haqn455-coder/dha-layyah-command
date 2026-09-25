@@ -1706,6 +1706,225 @@
       }
     }
 
+  
+    /* ==========================================================
+       V2.5 EXTRA-LARGE MOBILE ACCESSIBILITY — owner requested
+       ========================================================== */
+    @media (max-width:900px), (pointer:coarse) {
+      .app-main {
+        padding-left:14px !important;
+        padding-right:14px !important;
+        padding-bottom:118px !important;
+      }
+
+      /* Overall mobile reading scale: intentionally larger. */
+      #view-radar,
+      #view-biometric,
+      #view-cm-squad,
+      #view-vlink,
+      #view-dispatch {
+        font-size:19px !important;
+        line-height:1.62 !important;
+      }
+
+      #view-radar .text-xs,
+      #view-biometric .text-xs,
+      #view-cm-squad .text-xs,
+      #view-vlink .text-xs,
+      #view-dispatch .text-xs {
+        font-size:16px !important;
+        line-height:1.55 !important;
+      }
+
+      #view-radar .text-sm,
+      #view-biometric .text-sm,
+      #view-cm-squad .text-sm,
+      #view-vlink .text-sm,
+      #view-dispatch .text-sm {
+        font-size:18px !important;
+        line-height:1.62 !important;
+      }
+
+      #view-radar .text-base,
+      #view-biometric .text-base,
+      #view-cm-squad .text-base,
+      #view-vlink .text-base,
+      #view-dispatch .text-base {
+        font-size:21px !important;
+        line-height:1.38 !important;
+      }
+
+      #view-radar h2,
+      #view-biometric h2,
+      #view-cm-squad h2,
+      #view-vlink h2,
+      #view-dispatch h2 {
+        font-size:23px !important;
+        line-height:1.32 !important;
+      }
+
+      #view-radar h3,
+      #view-biometric h3,
+      #view-cm-squad h3,
+      #view-vlink h3,
+      #view-dispatch h3 {
+        font-size:20px !important;
+        line-height:1.4 !important;
+      }
+
+      .preface-kicker {
+        font-size:14px !important;
+        line-height:1.25 !important;
+      }
+
+      .executive-preface-copy {
+        font-size:18px !important;
+        line-height:1.65 !important;
+      }
+
+      .queue-meta {
+        font-size:16px !important;
+        line-height:1.55 !important;
+      }
+
+      .queue-meta > div {
+        padding:11px 12px !important;
+      }
+
+      .ceo-action-lead span {
+        font-size:14px !important;
+      }
+
+      .ceo-action-lead strong {
+        font-size:18px !important;
+        line-height:1.55 !important;
+      }
+
+      /* Attendance/facility controls */
+      .exec-section-head h2 { font-size:21px !important; }
+      .exec-section-head h3 { font-size:18px !important; }
+      .exec-eyebrow { font-size:12.5px !important; }
+      .exec-live-pill { font-size:12px !important; padding:6px 9px !important; }
+      .exec-mini-stat { min-height:64px !important; padding:11px 12px !important; }
+      .exec-mini-stat i { width:34px !important; height:34px !important; font-size:16px !important; }
+      .exec-mini-stat strong { font-size:18px !important; }
+      .exec-mini-stat span { font-size:13px !important; }
+      .recon-stat { min-height:68px !important; padding:11px 12px !important; }
+      .recon-stat > span { font-size:14px !important; }
+      .recon-stat > strong { font-size:18px !important; }
+      .recon-stat > small { font-size:12.5px !important; }
+      .recon-pill { font-size:13px !important; padding:6px 8px !important; }
+
+      .facility-accordion-trigger {
+        min-height:68px !important;
+        padding:12px 13px !important;
+      }
+      .facility-name {
+        font-size:17px !important;
+        gap:9px !important;
+      }
+      .facility-name i {
+        width:32px !important;
+        height:32px !important;
+        font-size:14px !important;
+      }
+      .facility-status {
+        font-size:13.5px !important;
+        padding:6px 10px !important;
+      }
+      .facility-chevron { font-size:12px !important; }
+      .facility-detail-grid span,
+      .critical-snapshot span { font-size:14px !important; }
+      .facility-detail-grid strong,
+      .critical-snapshot strong { font-size:16px !important; }
+      .critical-note { font-size:16px !important; line-height:1.55 !important; }
+      .critical-review-btn {
+        min-height:58px !important;
+        font-size:17px !important;
+      }
+
+      /* KPI row: visibly larger, still 2x2. */
+      .app-main > .grid.grid-cols-2.gap-3 > .glass-card {
+        height:96px !important;
+        min-height:96px !important;
+        padding:13px 14px !important;
+      }
+      .app-main > .grid.grid-cols-2.gap-3 > .glass-card .text-xs {
+        font-size:14px !important;
+      }
+      .app-main > .grid.grid-cols-2.gap-3 > .glass-card .text-2xl {
+        font-size:31px !important;
+      }
+      .app-main > .grid.grid-cols-2.gap-3 > .glass-card i {
+        font-size:17px !important;
+      }
+
+      /* Bottom navigation: intentionally almost twice the visual weight. */
+      .mobile-bottom-nav {
+        height:104px !important;
+        padding:10px 8px calc(10px + env(safe-area-inset-bottom)) !important;
+        gap:5px !important;
+      }
+      .mobile-bottom-nav button {
+        min-height:82px !important;
+        padding:8px 3px !important;
+        gap:7px !important;
+        border-radius:16px !important;
+        font-size:15.5px !important;
+        line-height:1.12 !important;
+        font-weight:900 !important;
+        letter-spacing:0 !important;
+      }
+      .mobile-bottom-nav button i {
+        width:36px !important;
+        height:34px !important;
+        font-size:27px !important;
+      }
+      .mobile-bottom-nav button span {
+        font-size:15.5px !important;
+        line-height:1.1 !important;
+        font-weight:900 !important;
+      }
+      .mobile-bottom-nav button.mobile-nav-active {
+        transform:translateY(-2px);
+        border:1px solid rgba(110,231,183,.22);
+        box-shadow:
+          inset 1px 1px 0 rgba(255,255,255,.10),
+          0 8px 22px rgba(16,185,129,.20) !important;
+      }
+
+      /* Review document: one more readability step. */
+      .review-back-btn {
+        min-height:56px !important;
+        font-size:17px !important;
+      }
+      .review-close-btn {
+        width:56px !important;
+        height:56px !important;
+        font-size:25px !important;
+      }
+      .letter-sheet #letterRecipient {
+        font-size:19px !important;
+        line-height:1.55 !important;
+      }
+      .letter-sheet #letterSubject {
+        font-size:20px !important;
+        line-height:1.5 !important;
+      }
+      .formal-draft-copy {
+        font-size:20px !important;
+        line-height:1.76 !important;
+      }
+      .formal-enclosures {
+        font-size:18px !important;
+        line-height:1.65 !important;
+      }
+      .letter-actions button {
+        min-height:64px !important;
+        font-size:18px !important;
+      }
+    }
+
   </style>
 </head>
 <body class="min-h-screen pb-12">
@@ -2171,7 +2390,7 @@
       <i class="fa-solid fa-bullseye"></i><span>CEO Actions</span>
     </button>
     <button type="button" data-mobile-tab="cm-squad" onclick="switchTab('cm-squad')">
-      <i class="fa-solid fa-clipboard-check"></i><span>Inspection</span>
+      <i class="fa-solid fa-clipboard-check"></i><span>Inspect</span>
     </button>
     <button type="button" data-mobile-tab="vlink" onclick="switchTab('vlink')">
       <i class="fa-solid fa-chart-line"></i><span>Brief</span>
