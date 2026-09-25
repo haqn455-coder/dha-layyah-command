@@ -1925,6 +1925,57 @@
       }
     }
 
+  
+    /* V2.4 semantic separation: internal CEO brief vs outgoing administrative draft */
+    .internal-brief-callout {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(96,165,250,.22);
+      background: linear-gradient(145deg,rgba(30,58,138,.20),rgba(15,23,42,.72));
+      display: grid;
+      gap: 12px;
+    }
+    .internal-brief-kicker {
+      color:#7dd3fc;
+      font-size:.72rem;
+      line-height:1.2;
+      letter-spacing:.10em;
+      font-weight:900;
+      margin-bottom:4px;
+    }
+    .internal-brief-callout strong {
+      display:block;
+      color:#f8fafc;
+      font-size:1rem;
+      line-height:1.35;
+    }
+    .internal-brief-callout p {
+      margin:5px 0 0;
+      color:#cbd5e1;
+      font-size:.92rem;
+      line-height:1.5;
+    }
+    .internal-brief-open-btn {
+      min-height:50px;
+      border-radius:12px;
+      border:1px solid rgba(56,189,248,.28);
+      background:linear-gradient(135deg,#0f766e,#0369a1);
+      color:white;
+      font-weight:850;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      box-shadow:inset 1px 1px 0 rgba(255,255,255,.14),0 8px 18px rgba(2,8,23,.24);
+    }
+    @media (max-width:900px), (pointer:coarse) {
+      .internal-brief-callout { padding:16px !important; }
+      .internal-brief-callout strong { font-size:17px !important; }
+      .internal-brief-callout p { font-size:15px !important; line-height:1.55 !important; }
+      .internal-brief-open-btn { min-height:56px !important; font-size:16px !important; }
+    }
+
   </style>
 </head>
 <body class="min-h-screen pb-12">
@@ -2299,12 +2350,6 @@
         </div>
       </div>
 
-      <!-- Preemptive Dossier -->
-      <button onclick="openLetterModal('CM_DOSSIER')" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold rounded-xl shadow-md flex items-center justify-center space-x-2">
-        <i class="fa-solid fa-file-shield text-base"></i>
-        <span>Review illustrative response dossier</span>
-      </button>
-
     </div>
 
     <!-- ==================== TAB 4: PROVINCIAL BRIEF ==================== -->
@@ -2340,6 +2385,18 @@
               <strong>Gap / action:</strong> Example figure is below example target. Reconcile roster, punches and approved leave; confirm facility cover before escalation.
             </p>
           </div>
+        </div>
+
+        <div class="internal-brief-callout">
+          <div>
+            <div class="internal-brief-kicker">FOR CEO USE</div>
+            <strong>Internal executive brief — not an outgoing letter</strong>
+            <p>This section prepares the CEO for district/provincial review. Any letter to an MS or other officer belongs in CEO Actions, Inspection or Orders.</p>
+          </div>
+          <button type="button" onclick="openLetterModal('CM_DOSSIER')" class="internal-brief-open-btn">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>Open full CEO brief</span>
+          </button>
         </div>
       </div>
 
@@ -2425,7 +2482,7 @@
         <h3 class="text-xs font-bold tracking-widest uppercase text-slate-600">Health &amp; Population Department</h3>
         <h2 class="text-base sm:text-lg font-black uppercase text-slate-900 tracking-tight">District Health Authority, Layyah</h2>
         <p class="text-xs text-slate-500">Office of the Chief Executive Officer • District Complex, Layyah</p>
-        <div class="prototype-stamp">PROTOTYPE — NOT AN OFFICIAL DISPATCH</div>
+        <div id="documentModeStamp" class="prototype-stamp">PROTOTYPE — NOT AN OFFICIAL DISPATCH</div>
       </div>
 
       <!-- DISPATCH METADATA -->
@@ -2449,7 +2506,7 @@
       </div>
 
       <!-- SIGNATURE STAMP BLOCK -->
-      <div class="letter-signature mt-6 pt-3 flex items-end justify-between border-t border-slate-200">
+      <div id="letterSignatureBlock" class="letter-signature mt-6 pt-3 flex items-end justify-between border-t border-slate-200">
         <div class="flex items-center space-x-2 text-xs text-slate-500">
           <i class="fa-solid fa-file-circle-question text-3xl text-slate-800"></i>
           <div>
@@ -2662,10 +2719,17 @@
 
       const isInternalBrief = Boolean(draft.internalBrief);
       document.getElementById('recipientLabel').textContent = isInternalBrief ? 'Prepared for:' : 'To:';
-      document.getElementById('reviewStamp').textContent = isInternalBrief ? 'Internal executive brief' : 'Ready for CEO review';
-      document.getElementById('reviewRole').textContent = isInternalBrief ? 'Prepared for CEO review' : 'Chief Executive Officer';
+      document.getElementById('reviewStamp').textContent = 'Ready for CEO review';
+      document.getElementById('reviewRole').textContent = 'Chief Executive Officer';
       document.getElementById('reviewOrg').textContent = 'District Health Authority, Layyah';
-      document.getElementById('shareDraftLabel').textContent = isInternalBrief ? 'Review & share demo brief' : 'Review & share demo draft';
+      document.getElementById('shareDraftLabel').textContent = isInternalBrief ? 'Share internal demo brief' : 'Review & share demo draft';
+
+      const signatureBlock = document.getElementById('letterSignatureBlock');
+      const modeStamp = document.getElementById('documentModeStamp');
+      if (signatureBlock) signatureBlock.style.display = isInternalBrief ? 'none' : '';
+      if (modeStamp) modeStamp.textContent = isInternalBrief
+        ? 'INTERNAL DEMO BRIEF — NOT FOR OFFICIAL DISPATCH'
+        : 'PROTOTYPE — NOT AN OFFICIAL DISPATCH';
 
       const content = document.getElementById('letterContent');
       if (Array.isArray(draft.formalBody)) {
@@ -2686,7 +2750,7 @@
       }
       const refLabels = {
         CM_PREEMPTIVE_CHAUBARA: 'Demo draft — Emergency / Chaubara',
-        CM_DOSSIER: 'Demo draft — Provincial brief',
+        CM_DOSSIER: 'Internal demo brief — Provincial review',
         ASV_CHAUBARA: 'Demo draft — Medicine / Chaubara',
         BIOMETRIC_CHAUBARA: 'Demo draft — Attendance / Chaubara',
         MNHC_ABSENT: 'Demo draft — Facility opening',
@@ -2717,7 +2781,7 @@
             : draft.issue + '\n\nRequired response:\n- ' + draft.response.join('\n- ') + '\n\nClosure evidence:\n' + draft.closure)
         : document.getElementById('letterContent').textContent;
       const recipientPrefix = draft && draft.internalBrief ? 'Prepared for: ' : 'To: ';
-      const text = 'PROTOTYPE DEMO — NOT AN OFFICIAL DISPATCH\n' + subject + '\n' + recipientPrefix + recipient + '\n\n' + body;
+      const text = (draft && draft.internalBrief ? 'INTERNAL PROTOTYPE BRIEF — NOT FOR OFFICIAL DISPATCH\n' : 'PROTOTYPE DEMO — NOT AN OFFICIAL DISPATCH\n') + subject + '\n' + recipientPrefix + recipient + '\n\n' + body;
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank', 'noopener');
       closeLetterModal();
     }
