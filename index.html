@@ -38,7 +38,7 @@
     html, body { overflow-x: hidden; }
     button, a { min-height: 44px; }
     *, *::before, *::after { box-sizing: border-box; }
-    .demo-banner { border: 1px solid #92400e; background: #422006; color: #fde68a; border-radius: 12px; padding: 10px 13px; font-size: .83rem; font-weight: 700; }
+    .demo-banner { border: 1px solid #d97706; background: #5a2a06; color: #fff7ed; border-radius: 12px; padding: 10px 13px; font-size: .83rem; font-weight: 800; letter-spacing: .01em; }
     .queue-meta { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px 12px; font-size: .82rem; color: #cbd5e1; }
     .queue-meta strong { color: #f8fafc; }
     .facility-detail { border-top: 1px solid rgba(148,163,184,.2); padding-top: 9px; margin-top: 9px; color: #cbd5e1; font-size: .85rem; }
@@ -608,6 +608,42 @@
       .grid.grid-cols-2.gap-3 .text-2xl { font-size: clamp(32px, 8.8vw, 34px) !important; }
     }
 
+  
+    /* V1.4: wording/readability polish — no architecture change */
+    @media (max-width: 900px) {
+      .demo-banner {
+        color: #fffdf8 !important;
+        background: #5a2a06 !important;
+        border-color: #f59e0b !important;
+        font-size: 15.5px !important;
+        line-height: 1.5 !important;
+      }
+      .letter-sheet {
+        font-size: 17.5px !important;
+        line-height: 1.62 !important;
+      }
+      .letter-sheet .text-xs {
+        font-size: 15.5px !important;
+        line-height: 1.55 !important;
+      }
+      .letter-sheet .text-sm {
+        font-size: 17px !important;
+        line-height: 1.62 !important;
+      }
+      .letter-sheet .font-mono {
+        font-size: 14.5px !important;
+        line-height: 1.5 !important;
+      }
+      .letter-sheet button {
+        font-size: 16px !important;
+        min-height: 56px !important;
+      }
+      .prototype-stamp {
+        font-size: 11.5px !important;
+        line-height: 1.2 !important;
+      }
+    }
+
   </style>
 </head>
 <body class="min-h-screen pb-12">
@@ -642,7 +678,7 @@
 
   <!-- MAIN CONTAINER (NATURAL MOBILE WIDTH) -->
   <main class="app-main max-w-3xl w-full mx-auto px-4 mt-4 space-y-4">
-    <p class="demo-banner">SYNTHETIC DEMO — figures, facilities, incidents, orders and times are illustrative. No live government system or official dispatch is connected.</p>
+    <p class="demo-banner">DEMO ONLY — all figures, facilities, alerts and orders shown here are sample data. No live government system or official dispatch is connected.</p>
 
     <!-- METRICS CARDS (BOLD, HIGH-VISIBILITY GRID) -->
     <div class="grid grid-cols-2 gap-3">
@@ -1116,13 +1152,13 @@
         <div class="flex items-center space-x-2 text-xs text-slate-500">
           <i class="fa-solid fa-file-circle-question text-3xl text-slate-800"></i>
           <div>
-            <div>QR and hash: future production step</div>
-            <div class="font-mono text-[10px]">NO VERIFICATION IN DEMO</div>
+            <div>QR verification: future production feature</div>
+            <div class="font-mono text-[10px]">DEMO — NOT VERIFIED</div>
           </div>
         </div>
         <div class="text-center">
           <div class="font-serif italic font-bold text-blue-900 text-lg tracking-wide border-b border-blue-900 pb-0.5">
-            CEO review pending
+            For CEO review
           </div>
           <div class="text-xs font-bold text-slate-900 mt-1">Chief Executive Officer</div>
           <div class="text-xs text-slate-600">District Health Authority, Layyah</div>
@@ -1188,12 +1224,12 @@
     }
 
     const demoDrafts = {
-      CM_PREEMPTIVE_CHAUBARA: ["Emergency readiness response — draft", "MS, THQ Hospital Chaubara", "Illustrative inspection response: verify the ASV shortage, transfer availability, duty roster and emergency coverage. Record approved corrective action and evidence before any real order."],
-      CM_DOSSIER: ["Provincial compliance brief — draft", "Provincial review team", "Illustrative district brief: summarize verified facility readiness, responsible officers, gaps, corrective actions and evidence. No dossier has been signed or submitted."],
-      ASV_CHAUBARA: ["ASV escalation explanation — draft", "MS, THQ Hospital Chaubara", "Illustrative unresolved ASV shortage. Confirm current stock and alternative supply, patient safety impact, officer response and replenishment evidence before a CEO decision."],
-      BIOMETRIC_CHAUBARA: ["Attendance reconciliation — draft", "MS, THQ Hospital Chaubara", "Illustrative punch gap at THQ Chaubara. Compare the duty roster, punches and approved leave; verify emergency coverage and individual facts before any explanation or disciplinary process."],
-      MNHC_ABSENT: ["Facility opening explanation — draft", "Incharge, MNHC 14/TDK", "Illustrative AC finding of a closed facility. Confirm inspection evidence, opening time, staff roster, approved leave and interim patient coverage before deciding the response."],
-      CM_COMPLAINT: ["Complaint response — draft", "MS, THQ Hospital Karor Lal Esan", "Illustrative medicine access complaint #4823. Verify complaint status, contact the responsible officer and review patient response and portal closure evidence before the example due time."]
+      CM_PREEMPTIVE_CHAUBARA: ["Emergency readiness — review draft", "MS, THQ Hospital Chaubara", "Demo case: an emergency-readiness gap has been flagged. Please confirm the medicine stock, duty roster and emergency coverage. If the gap is confirmed, record the immediate corrective action and evidence before any CEO decision."],
+      CM_DOSSIER: ["Provincial review brief — draft", "Provincial review team", "Demo brief: show the current facility status, the officer responsible for each open issue, the action already taken and the evidence still required. This is a sample briefing only and has not been submitted."],
+      ASV_CHAUBARA: ["Critical medicine shortage — review draft", "MS, THQ Hospital Chaubara", "Demo alert: ASV is shown as unavailable at THQ Chaubara. First confirm the current stock, nearby or warehouse backup and any patient-safety risk. If the shortage is still unresolved, ask the MS for the cause and the immediate replenishment plan."],
+      BIOMETRIC_CHAUBARA: ["Attendance gap — review draft", "MS, THQ Hospital Chaubara", "Demo alert: 6 Medical Officer shifts are not matched with a confirmed attendance punch. Before any action, check the duty roster, approved leave and emergency/casualty coverage. If the gap is confirmed, ask the MS for an explanation and record the closure evidence."],
+      MNHC_ABSENT: ["Facility opening issue — review draft", "Incharge, MNHC 14/TDK", "Demo alert: the facility is shown as closed or not ready at the review time. Confirm the inspection evidence, opening time, staff roster, approved leave and patient coverage. If the issue is confirmed, ask the incharge for an explanation and corrective action."],
+      CM_COMPLAINT: ["Medicine complaint — review draft", "MS, THQ Hospital Karor Lal Esan", "Demo complaint: a patient reports that a prescribed free medicine was not provided. Confirm the complaint status, medicine availability and the action taken for the patient. Close the case only after the response and evidence are recorded."]
     };
 
     function openLetterModal(type) {
@@ -1203,7 +1239,15 @@
       document.getElementById('letterSubject').textContent = draft[0];
       document.getElementById('letterRecipient').textContent = draft[1];
       document.getElementById('letterContent').textContent = draft[2];
-      document.getElementById('letterDispatchNo').textContent = 'Draft ref. DEMO/' + type;
+      const refLabels = {
+        CM_PREEMPTIVE_CHAUBARA: 'Demo draft — Emergency / Chaubara',
+        CM_DOSSIER: 'Demo draft — Provincial brief',
+        ASV_CHAUBARA: 'Demo draft — Medicine / Chaubara',
+        BIOMETRIC_CHAUBARA: 'Demo draft — Attendance / Chaubara',
+        MNHC_ABSENT: 'Demo draft — Facility opening',
+        CM_COMPLAINT: 'Demo draft — Complaint / Karor'
+      };
+      document.getElementById('letterDispatchNo').textContent = refLabels[type] || 'Demo draft';
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
       modal.querySelector('.letter-sheet').scrollTop = 0;
