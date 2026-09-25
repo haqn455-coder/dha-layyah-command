@@ -644,6 +644,76 @@
       }
     }
 
+  
+    /* V1.5: full-screen mobile review + structured executive draft */
+    @media (max-width: 900px), (pointer: coarse) {
+      .letter-modal {
+        align-items: stretch !important;
+        justify-content: stretch !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        backdrop-filter: none !important;
+      }
+      .letter-sheet {
+        width: 100vw !important;
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+        max-height: 100dvh !important;
+        max-width: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 22px 18px calc(92px + env(safe-area-inset-bottom)) !important;
+        box-shadow: none !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+      }
+      .letter-sheet .letter-actions {
+        position: sticky;
+        left: 0;
+        right: 0;
+        bottom: calc(-92px - env(safe-area-inset-bottom));
+        margin-left: -18px !important;
+        margin-right: -18px !important;
+        padding: 12px 18px calc(12px + env(safe-area-inset-bottom)) !important;
+        background: rgba(255,255,255,.98);
+        border-top: 1px solid #e2e8f0 !important;
+        box-shadow: 0 -8px 24px rgba(15,23,42,.08);
+        z-index: 4;
+      }
+      .letter-sheet #letterContent {
+        font-size: 17px !important;
+        line-height: 1.62 !important;
+      }
+      .letter-review-block {
+        margin-top: 14px;
+        padding: 14px 15px;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        background: #f8fafc;
+      }
+      .letter-review-block h4 {
+        margin: 0 0 6px;
+        font-size: 15px;
+        line-height: 1.3;
+        font-weight: 800;
+        color: #0f172a;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+      }
+      .letter-review-block p {
+        margin: 0;
+        color: #334155;
+      }
+      .letter-review-block ul {
+        margin: 8px 0 0 1.15rem;
+        padding: 0;
+        color: #334155;
+      }
+      .letter-review-block li {
+        margin: 5px 0;
+      }
+    }
+
   </style>
 </head>
 <body class="min-h-screen pb-12">
@@ -1104,7 +1174,7 @@
     </button>
   </nav>
 
-  <!-- MODAL: OFFICIAL SIGNED SARKARI LETTERHEAD -->
+  <!-- MODAL: PROTOTYPE EXECUTIVE REVIEW DRAFT -->
   <div id="letterModal" class="letter-modal fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 hidden">
     <div class="letter-sheet bg-white text-slate-900 rounded-2xl max-w-lg w-full p-5 sm:p-7 max-h-[90vh] overflow-y-auto shadow-2xl relative">
       
@@ -1113,7 +1183,7 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
 
-      <!-- OFFICIAL GOVERNMENT LETTERHEAD -->
+      <!-- GOVERNMENT-STYLE DEMO LETTERHEAD — PROTOTYPE ONLY -->
       <div class="text-center border-b-2 border-slate-900 pb-3">
         <div class="letter-gov-mark mb-2" aria-label="Government of Punjab emblem">
           <img src="assets/punjab-emblem.png"
@@ -1166,7 +1236,7 @@
       </div>
 
       <!-- ACTION BUTTONS -->
-      <div class="mt-5 flex gap-2.5 justify-end pt-2 border-t border-slate-200">
+      <div class="letter-actions mt-5 flex gap-2.5 justify-end pt-2 border-t border-slate-200">
         <button onclick="closeLetterModal()" class="w-1/3 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold rounded-xl">
           Cancel
         </button>
@@ -1224,21 +1294,95 @@
     }
 
     const demoDrafts = {
-      CM_PREEMPTIVE_CHAUBARA: ["Emergency readiness — review draft", "MS, THQ Hospital Chaubara", "Demo case: an emergency-readiness gap has been flagged. Please confirm the medicine stock, duty roster and emergency coverage. If the gap is confirmed, record the immediate corrective action and evidence before any CEO decision."],
-      CM_DOSSIER: ["Provincial review brief — draft", "Provincial review team", "Demo brief: show the current facility status, the officer responsible for each open issue, the action already taken and the evidence still required. This is a sample briefing only and has not been submitted."],
-      ASV_CHAUBARA: ["Critical medicine shortage — review draft", "MS, THQ Hospital Chaubara", "Demo alert: ASV is shown as unavailable at THQ Chaubara. First confirm the current stock, nearby or warehouse backup and any patient-safety risk. If the shortage is still unresolved, ask the MS for the cause and the immediate replenishment plan."],
-      BIOMETRIC_CHAUBARA: ["Attendance gap — review draft", "MS, THQ Hospital Chaubara", "Demo alert: 6 Medical Officer shifts are not matched with a confirmed attendance punch. Before any action, check the duty roster, approved leave and emergency/casualty coverage. If the gap is confirmed, ask the MS for an explanation and record the closure evidence."],
-      MNHC_ABSENT: ["Facility opening issue — review draft", "Incharge, MNHC 14/TDK", "Demo alert: the facility is shown as closed or not ready at the review time. Confirm the inspection evidence, opening time, staff roster, approved leave and patient coverage. If the issue is confirmed, ask the incharge for an explanation and corrective action."],
-      CM_COMPLAINT: ["Medicine complaint — review draft", "MS, THQ Hospital Karor Lal Esan", "Demo complaint: a patient reports that a prescribed free medicine was not provided. Confirm the complaint status, medicine availability and the action taken for the patient. Close the case only after the response and evidence are recorded."]
+      CM_PREEMPTIVE_CHAUBARA: {
+        subject: "Emergency readiness gap — CEO review draft",
+        recipient: "Medical Superintendent, THQ Hospital Chaubara",
+        issue: "Demo scenario: an emergency-readiness gap has been flagged at THQ Hospital Chaubara. The purpose of this draft is to obtain a verified facility response before any CEO decision.",
+        response: [
+          "Confirm current emergency medicine stock and any immediate shortage.",
+          "Confirm duty roster and actual emergency/casualty staff coverage.",
+          "State what corrective action has already been taken and by whom.",
+          "Report any patient-safety impact or service interruption."
+        ],
+        closure: "Closure evidence should include the verified stock/coverage position, responsible officer response, corrective action taken and the time the gap was resolved."
+      },
+      CM_DOSSIER: {
+        subject: "Provincial review brief — CEO review draft",
+        recipient: "CEO review file — District Health Authority, Layyah",
+        issue: "Demo executive brief: this draft consolidates verified facility-readiness gaps, accountable officers, actions already taken and evidence still pending for a provincial-level review.",
+        response: [
+          "Confirm that every red/amber item has a named accountable officer.",
+          "Confirm whether each corrective action is completed, pending or overdue.",
+          "Attach the evidence required to support closure of each issue."
+        ],
+        closure: "The brief is ready only when every highlighted item has a verified status, named owner and supporting evidence."
+      },
+      ASV_CHAUBARA: {
+        subject: "Critical medicine shortage — CEO review draft",
+        recipient: "Medical Superintendent, THQ Hospital Chaubara",
+        issue: "Demo alert: Anti-Snake Venom (ASV) is reported unavailable at THQ Hospital Chaubara. Because this is an emergency medicine, the facility response should establish the real stock position, immediate backup and patient-safety risk before any CEO action.",
+        response: [
+          "Confirm the physical ASV stock currently available in emergency/casualty and pharmacy.",
+          "Confirm stock available through the district warehouse or the nearest suitable backup facility.",
+          "State the reason for the shortage and whether a requisition/transfer has already been initiated.",
+          "Confirm the immediate replenishment plan, responsible officer and expected restoration time.",
+          "Report whether any patient is currently affected or at immediate risk."
+        ],
+        closure: "Closure evidence should include the updated stock position, requisition/transfer reference, responsible officer response and confirmation of restored emergency availability."
+      },
+      BIOMETRIC_CHAUBARA: {
+        subject: "Attendance reconciliation — CEO review draft",
+        recipient: "Medical Superintendent, THQ Hospital Chaubara",
+        issue: "Demo alert: six Medical Officer shifts are not matched with a confirmed attendance punch. This draft is for factual reconciliation first; an unmatched punch alone is not treated as confirmed absence.",
+        response: [
+          "Reconcile each flagged shift against the approved duty roster.",
+          "Check approved leave, official duty, transfer/deputation or any other valid explanation.",
+          "Confirm who actually covered emergency/casualty services during the flagged period.",
+          "Identify any genuine uncovered shift or unauthorized absence, if verified.",
+          "State the corrective action taken for any confirmed staffing gap."
+        ],
+        closure: "Closure evidence should include the roster extract, attendance reconciliation, approved-leave/official-duty record where applicable, coverage confirmation and the MS response."
+      },
+      MNHC_ABSENT: {
+        subject: "Facility opening issue — CEO review draft",
+        recipient: "Incharge, MNHC 14/TDK",
+        issue: "Demo alert: the facility is shown as closed or not ready at the review time. The response should establish the actual opening status, staff position and patient coverage before any escalation.",
+        response: [
+          "Confirm the actual opening time and inspection/monitoring evidence.",
+          "Reconcile staff roster, attendance and approved leave.",
+          "Confirm interim patient coverage if the assigned staff member was unavailable.",
+          "State the cause of the delay/closure and the immediate corrective action."
+        ],
+        closure: "Closure evidence should include opening-status evidence, attendance/roster reconciliation, patient-coverage confirmation and the incharge response."
+      },
+      CM_COMPLAINT: {
+        subject: "Medicine access complaint — CEO review draft",
+        recipient: "Medical Superintendent, THQ Hospital Karor Lal Esan",
+        issue: "Demo complaint: a patient reports that a prescribed free medicine was not provided. The facility response should verify the complaint, medicine availability and the action taken for the patient.",
+        response: [
+          "Confirm the complaint details and current portal/status entry.",
+          "Verify whether the medicine was actually available at the relevant time.",
+          "If unavailable, state the reason and the approved alternative or replenishment action.",
+          "Confirm whether the patient was contacted and whether the service issue was resolved."
+        ],
+        closure: "Closure evidence should include the facility response, medicine availability record, patient follow-up and portal/complaint closure evidence."
+      }
     };
 
     function openLetterModal(type) {
       const modal = document.getElementById('letterModal');
       const draft = demoDrafts[type];
       if (!modal || !draft) return;
-      document.getElementById('letterSubject').textContent = draft[0];
-      document.getElementById('letterRecipient').textContent = draft[1];
-      document.getElementById('letterContent').textContent = draft[2];
+      document.getElementById('letterSubject').textContent = draft.subject;
+      document.getElementById('letterRecipient').textContent = draft.recipient;
+
+      const content = document.getElementById('letterContent');
+      content.innerHTML =
+        '<div class="letter-review-block"><h4>Issue summary</h4><p>' + draft.issue + '</p></div>' +
+        '<div class="letter-review-block"><h4>Required response if CEO approves this draft</h4><ul>' +
+        draft.response.map(function(item){ return '<li>' + item + '</li>'; }).join('') +
+        '</ul></div>' +
+        '<div class="letter-review-block"><h4>Closure evidence</h4><p>' + draft.closure + '</p></div>';
       const refLabels = {
         CM_PREEMPTIVE_CHAUBARA: 'Demo draft — Emergency / Chaubara',
         CM_DOSSIER: 'Demo draft — Provincial brief',
@@ -1248,6 +1392,7 @@
         CM_COMPLAINT: 'Demo draft — Complaint / Karor'
       };
       document.getElementById('letterDispatchNo').textContent = refLabels[type] || 'Demo draft';
+      document.getElementById('letterDispatchNo').dataset.draftType = type;
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
       modal.querySelector('.letter-sheet').scrollTop = 0;
@@ -1263,8 +1408,12 @@
     function confirmAndDispatchWhatsApp() {
       const subject = document.getElementById('letterSubject').textContent;
       const recipient = document.getElementById('letterRecipient').textContent;
-      const body = document.getElementById('letterContent').textContent;
-      const text = 'PROTOTYPE DEMO — NOT AN OFFICIAL DISPATCH\n' + subject + '\nTo: ' + recipient + '\n' + body;
+      const activeType = document.getElementById('letterDispatchNo').dataset.draftType;
+      const draft = demoDrafts[activeType];
+      const body = draft
+        ? draft.issue + '\n\nRequired response:\n- ' + draft.response.join('\n- ') + '\n\nClosure evidence:\n' + draft.closure
+        : document.getElementById('letterContent').textContent;
+      const text = 'PROTOTYPE DEMO — NOT AN OFFICIAL DISPATCH\n' + subject + '\nTo: ' + recipient + '\n\n' + body;
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank', 'noopener');
       closeLetterModal();
     }
