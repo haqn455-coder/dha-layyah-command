@@ -1427,6 +1427,30 @@
       }
     }
 
+  
+    /* V2.3 executive drafting standard — every draft is near-send-ready */
+    .formal-draft-copy { max-width: 100%; }
+    .formal-draft-copy p:first-child { font-weight: 600; }
+    .formal-enclosures { margin-top: 18px !important; }
+    .formal-enclosures h4 { color:#0f172a !important; }
+    @media (max-width:900px), (pointer:coarse) {
+      .letter-sheet #letterSubject {
+        display:inline-block;
+        margin-top:3px;
+        font-size:16px !important;
+        line-height:1.45 !important;
+        text-decoration:none !important;
+        text-transform:none !important;
+      }
+      .letter-sheet #letterRecipient {
+        font-size:16px !important;
+        line-height:1.45 !important;
+      }
+      .formal-draft-copy p:first-child {
+        font-weight:650;
+      }
+    }
+
   </style>
 </head>
 <body class="min-h-screen pb-12">
@@ -1920,7 +1944,7 @@
       <!-- DISPATCH METADATA -->
       <div class="letter-meta flex justify-between items-center text-xs font-semibold text-slate-700 mt-3 border-b border-slate-200 pb-2">
         <span id="letterDispatchNo">Draft ref. DEMO/895-B</span>
-        <span id="letterDate">Illustrative date: 24 Sep 2026</span>
+        <span id="letterDate">Illustrative date: 25 Sep 2026</span>
       </div>
 
       <!-- LETTER BODY -->
@@ -1962,7 +1986,7 @@
         </button>
         <button onclick="confirmAndDispatchWhatsApp()" class="w-2/3 py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg flex items-center justify-center space-x-2">
           <i class="fa-brands fa-whatsapp text-lg"></i>
-          <span>Share demo draft</span>
+          <span>Review & share demo draft</span>
         </button>
       </div>
 
@@ -2033,40 +2057,57 @@
 
     const demoDrafts = {
       CM_PREEMPTIVE_CHAUBARA: {
-        subject: "Emergency readiness gap — CEO review draft",
+        subject: "Immediate verification of emergency readiness and continuity of essential services — THQ Hospital Chaubara",
         recipient: "Medical Superintendent, THQ Hospital Chaubara",
-        issue: "Demo scenario: an emergency-readiness gap has been flagged at THQ Hospital Chaubara. The purpose of this draft is to obtain a verified facility response before any CEO decision.",
-        response: [
-          "Confirm current emergency medicine stock and any immediate shortage.",
-          "Confirm duty roster and actual emergency/casualty staff coverage.",
-          "State what corrective action has already been taken and by whom.",
-          "Report any patient-safety impact or service interruption."
+        formalBody: [
+          "An emergency-readiness exception relating to THQ Hospital Chaubara has been placed before this office for verification. The matter requires a concise factual response so that any administrative decision is based on the current facility position rather than an unverified monitoring signal.",
+          "You are requested to personally confirm the present status of essential emergency medicines and supplies, the approved duty roster, the actual emergency/casualty staffing available during the relevant period, and any alternate coverage arrangement made to maintain uninterrupted services.",
+          "Your response should clearly identify each verified gap, the officer responsible for corrective action, the action already taken, the time by which the gap is expected to be fully resolved, and whether any patient service was delayed, interrupted or placed at risk.",
+          "Where the reported gap is found to be incorrect, already rectified, or explained by an approved administrative arrangement, the supporting record may be attached so that the exception can be closed on evidence. Where the gap remains unresolved, an immediate corrective plan may be submitted for review.",
+          "The response and supporting evidence may be furnished within the due time displayed against this item in the CEO Action Queue."
         ],
-        closure: "Closure evidence should include the verified stock/coverage position, responsible officer response, corrective action taken and the time the gap was resolved."
+        enclosures: [
+          "Current emergency medicine / essential supply position",
+          "Approved duty roster and actual emergency/casualty coverage record",
+          "Corrective action note with responsible officer and expected completion time",
+          "Patient-service impact statement, if any",
+          "Medical Superintendent's signed / authenticated consolidated response"
+        ]
       },
       CM_DOSSIER: {
-        subject: "Provincial review brief — CEO review draft",
-        recipient: "CEO review file — District Health Authority, Layyah",
-        issue: "Demo executive brief: this draft consolidates verified facility-readiness gaps, accountable officers, actions already taken and evidence still pending for a provincial-level review.",
-        response: [
-          "Confirm that every red/amber item has a named accountable officer.",
-          "Confirm whether each corrective action is completed, pending or overdue.",
-          "Attach the evidence required to support closure of each issue."
+        subject: "District readiness and unresolved exceptions — Provincial Review Brief",
+        recipient: "Chief Executive Officer, District Health Authority, Layyah",
+        formalBody: [
+          "This executive brief is prepared for CEO review before any provincial-level presentation or submission. It is intended to consolidate only verified red/amber exceptions, the officer responsible for each matter, corrective action already taken, evidence still outstanding, and the decision or support required at district or provincial level.",
+          "Each item included in the brief should carry a verified current status, a named accountable officer, a clear due time, the latest response received, and the evidence required for closure. Items that have been resolved and evidenced should be removed from the active exception section rather than carried forward as open risks.",
+          "The brief should distinguish district-controllable actions from dependencies requiring provincial support, so that the CEO can present a concise position on what has been completed, what remains unresolved, why it remains unresolved, and what specific intervention is requested.",
+          "No item should be represented as closed, compliant or resolved unless supporting evidence has been reviewed. Any figure or status originating from the demo environment remains illustrative until connected to an authorized source system."
         ],
-        closure: "The brief is ready only when every highlighted item has a verified status, named owner and supporting evidence."
+        enclosures: [
+          "Current red/amber exception register",
+          "Officer-wise accountability and due-time summary",
+          "Evidence status for each unresolved item",
+          "List of district actions completed",
+          "List of provincial dependencies / decisions required"
+        ]
       },
       ASV_CHAUBARA: {
-        subject: "Critical medicine shortage — CEO review draft",
+        subject: "Urgent verification and restoration of Anti-Snake Venom availability — THQ Hospital Chaubara",
         recipient: "Medical Superintendent, THQ Hospital Chaubara",
-        issue: "Demo alert: Anti-Snake Venom (ASV) is reported unavailable at THQ Hospital Chaubara. Because this is an emergency medicine, the facility response should establish the real stock position, immediate backup and patient-safety risk before any CEO action.",
-        response: [
-          "Confirm the physical ASV stock currently available in emergency/casualty and pharmacy.",
-          "Confirm stock available through the district warehouse or the nearest suitable backup facility.",
-          "State the reason for the shortage and whether a requisition/transfer has already been initiated.",
-          "Confirm the immediate replenishment plan, responsible officer and expected restoration time.",
-          "Report whether any patient is currently affected or at immediate risk."
+        formalBody: [
+          "A critical medicine exception has been placed before this office indicating non-availability of Anti-Snake Venom (ASV) at THQ Hospital Chaubara. As ASV is an emergency-use medicine, the current stock position and continuity arrangement require immediate factual verification.",
+          "You are requested to confirm the physical ASV stock presently available in the hospital pharmacy and emergency/casualty areas, including usable quantity, batch/expiry position where relevant to stock verification, and whether any stock is available through the district store or another authorized nearby facility for immediate transfer.",
+          "If ASV is presently unavailable, please state the reason for the shortage, the date and reference of any requisition or transfer request already initiated, the officer responsible for follow-up, the immediate interim arrangement for continuity of emergency service, and the expected time for restoration of stock.",
+          "Please confirm whether any patient has been affected by the reported shortage or whether any referral, transfer or delay in emergency management occurred because of non-availability. Any such service impact should be reported separately and without delay.",
+          "The matter may be treated as closed only after restored availability is supported by verifiable stock / receipt / transfer evidence and the responsible officer's response is placed on record. The response may be furnished within the due time displayed in the CEO Action Queue."
         ],
-        closure: "Closure evidence should include the updated stock position, requisition/transfer reference, responsible officer response and confirmation of restored emergency availability."
+        enclosures: [
+          "Physical ASV stock verification from pharmacy and emergency/casualty",
+          "District-store / backup-facility availability confirmation",
+          "Requisition / transfer reference, where applicable",
+          "Expected restoration time and responsible officer",
+          "Evidence of restored availability and Medical Superintendent's response"
+        ]
       },
       BIOMETRIC_CHAUBARA: {
         subject: "Reconciliation of six unmatched Medical Officer duty shifts — THQ Hospital Chaubara",
@@ -2076,7 +2117,7 @@
           "You are therefore requested to personally verify each of the six flagged shifts against the approved duty roster, sanctioned leave, official duty/deputation/transfer record, and the actual emergency/casualty coverage provided during the relevant shift.",
           "A consolidated factual report may be submitted for each flagged shift showing: (i) name and designation of the officer, (ii) scheduled duty timing, (iii) biometric attendance status, (iv) reason for non-punch, if any, (v) substitute or coverage arrangement, and (vi) whether any service gap occurred.",
           "Where reconciliation establishes an unauthorized absence or an uncovered duty shift, further action may be initiated strictly in accordance with the applicable rules after due verification, and the action taken may be reported to this office. Where the discrepancy is explained by approved leave, official duty, a technical attendance issue, or verified alternate coverage, the supporting record may be attached for closure.",
-          "Please also confirm specifically whether emergency and casualty services remained continuously covered during the reviewed period and report any patient-service impact, if identified."
+          "Please also confirm specifically whether emergency and casualty services remained continuously covered during the reviewed period and report any patient-service impact, if identified. The response may be furnished within the due time displayed against this item in the CEO Action Queue."
         ],
         enclosures: [
           "Approved duty roster for the reviewed period",
@@ -2087,28 +2128,40 @@
         ]
       },
       MNHC_ABSENT: {
-        subject: "Facility opening issue — CEO review draft",
+        subject: "Verification of facility opening, staff availability and patient coverage — MNHC 14/TDK",
         recipient: "Incharge, MNHC 14/TDK",
-        issue: "Demo alert: the facility is shown as closed or not ready at the review time. The response should establish the actual opening status, staff position and patient coverage before any escalation.",
-        response: [
-          "Confirm the actual opening time and inspection/monitoring evidence.",
-          "Reconcile staff roster, attendance and approved leave.",
-          "Confirm interim patient coverage if the assigned staff member was unavailable.",
-          "State the cause of the delay/closure and the immediate corrective action."
+        formalBody: [
+          "A monitoring exception has been placed before this office indicating that MNHC 14/TDK was reported closed or not operationally ready at the relevant review time. The matter requires factual verification before any administrative conclusion is drawn.",
+          "You are requested to confirm the actual opening time of the facility on the relevant date, the staff members rostered for duty, their attendance / approved leave status, and the arrangement made for patient coverage during any period in which the assigned staff member was not available.",
+          "If the facility opened late, remained closed, or operated without the required coverage, please state the reason, duration of the service gap, number and type of services affected, the officer responsible, and the immediate corrective action taken to restore normal functioning.",
+          "Where the monitoring signal is explained by an approved leave arrangement, official duty, technical reporting issue, or verified alternate coverage, the relevant supporting record may be attached for evidence-based closure.",
+          "Please submit the verified factual position, corrective action and supporting evidence within the due time displayed against this item in the CEO Action Queue."
         ],
-        closure: "Closure evidence should include opening-status evidence, attendance/roster reconciliation, patient-coverage confirmation and the incharge response."
+        enclosures: [
+          "Facility opening / monitoring evidence for the relevant date and time",
+          "Approved staff roster and attendance record",
+          "Approved leave / official duty record, where applicable",
+          "Patient-coverage / alternate-duty arrangement",
+          "Incharge's response and corrective-action evidence"
+        ]
       },
       CM_COMPLAINT: {
-        subject: "Medicine access complaint — CEO review draft",
+        subject: "Factual report and corrective action regarding non-availability of prescribed medicine — Complaint #4823",
         recipient: "Medical Superintendent, THQ Hospital Karor Lal Esan",
-        issue: "Demo complaint: a patient reports that a prescribed free medicine was not provided. The facility response should verify the complaint, medicine availability and the action taken for the patient.",
-        response: [
-          "Confirm the complaint details and current portal/status entry.",
-          "Verify whether the medicine was actually available at the relevant time.",
-          "If unavailable, state the reason and the approved alternative or replenishment action.",
-          "Confirm whether the patient was contacted and whether the service issue was resolved."
+        formalBody: [
+          "A medicine-access complaint has been placed before this office alleging that a patient was not provided a prescribed medicine that was expected to be available through the facility. The complaint requires prompt verification and documented resolution.",
+          "You are requested to verify the complaint details, the medicine prescribed, the stock position at the relevant time, the dispensing / pharmacy record, and whether the medicine was available, temporarily out of stock, or unavailable for another documented reason.",
+          "If the medicine was unavailable, please state the cause, the replenishment or authorized alternative arrangement initiated, the officer responsible, and the expected or actual restoration time. Please also confirm whether the patient was contacted and whether the immediate service issue was resolved.",
+          "Where the complaint is found to be inaccurate, duplicated or already resolved, the supporting record may be attached for closure. Where a genuine service failure is established, the corrective action and any preventive measure to reduce recurrence may be recorded.",
+          "The case may be closed only after the facility response, medicine-availability evidence and patient follow-up are documented and the complaint status is updated in the relevant source system. The response may be furnished within the due time displayed in the CEO Action Queue."
         ],
-        closure: "Closure evidence should include the facility response, medicine availability record, patient follow-up and portal/complaint closure evidence."
+        enclosures: [
+          "Complaint / portal reference and current status",
+          "Prescription and relevant dispensing / stock evidence",
+          "Replenishment / alternative-arrangement record, where applicable",
+          "Patient follow-up / resolution confirmation",
+          "Medical Superintendent's response and corrective action"
+        ]
       }
     };
 
