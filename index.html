@@ -1394,6 +1394,39 @@
       }
     }
 
+  
+    /* V2.2 formal CEO draft: show the exact text that could be approved/shared */
+    .formal-draft-copy {
+      margin-top: 12px;
+      color: #0f172a;
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+    .formal-draft-copy p {
+      margin: 0 0 14px;
+      text-align: justify;
+    }
+    .formal-enclosures ol {
+      margin: 8px 0 0 1.25rem;
+      padding: 0;
+      color: #334155;
+    }
+    .formal-enclosures li { margin: 6px 0; }
+    @media (max-width:900px), (pointer:coarse) {
+      .formal-draft-copy {
+        font-size: 17px !important;
+        line-height: 1.68 !important;
+      }
+      .formal-draft-copy p {
+        margin-bottom: 16px !important;
+        text-align: left;
+      }
+      .formal-enclosures {
+        font-size: 15.5px !important;
+        line-height: 1.55 !important;
+      }
+    }
+
   </style>
 </head>
 <body class="min-h-screen pb-12">
@@ -2036,17 +2069,22 @@
         closure: "Closure evidence should include the updated stock position, requisition/transfer reference, responsible officer response and confirmation of restored emergency availability."
       },
       BIOMETRIC_CHAUBARA: {
-        subject: "Attendance reconciliation — CEO review draft",
+        subject: "Reconciliation of six unmatched Medical Officer duty shifts — THQ Hospital Chaubara",
         recipient: "Medical Superintendent, THQ Hospital Chaubara",
-        issue: "Demo alert: six Medical Officer shifts are not matched with a confirmed attendance punch. This draft is for factual reconciliation first; an unmatched punch alone is not treated as confirmed absence.",
-        response: [
-          "Reconcile each flagged shift against the approved duty roster.",
-          "Check approved leave, official duty, transfer/deputation or any other valid explanation.",
-          "Confirm who actually covered emergency/casualty services during the flagged period.",
-          "Identify any genuine uncovered shift or unauthorized absence, if verified.",
-          "State the corrective action taken for any confirmed staffing gap."
+        formalBody: [
+          "It has been observed from the attendance monitoring summary placed before this office that six duty shifts of Medical Officers at THQ Hospital Chaubara are presently not reconciled with a confirmed biometric attendance record. The discrepancy requires immediate administrative reconciliation; however, a missing biometric punch shall not, by itself, be treated as proof of absence.",
+          "You are therefore requested to personally verify each of the six flagged shifts against the approved duty roster, sanctioned leave, official duty/deputation/transfer record, and the actual emergency/casualty coverage provided during the relevant shift.",
+          "A consolidated factual report may be submitted for each flagged shift showing: (i) name and designation of the officer, (ii) scheduled duty timing, (iii) biometric attendance status, (iv) reason for non-punch, if any, (v) substitute or coverage arrangement, and (vi) whether any service gap occurred.",
+          "Where reconciliation establishes an unauthorized absence or an uncovered duty shift, further action may be initiated strictly in accordance with the applicable rules after due verification, and the action taken may be reported to this office. Where the discrepancy is explained by approved leave, official duty, a technical attendance issue, or verified alternate coverage, the supporting record may be attached for closure.",
+          "Please also confirm specifically whether emergency and casualty services remained continuously covered during the reviewed period and report any patient-service impact, if identified."
         ],
-        closure: "Closure evidence should include the roster extract, attendance reconciliation, approved-leave/official-duty record where applicable, coverage confirmation and the MS response."
+        enclosures: [
+          "Approved duty roster for the reviewed period",
+          "Biometric attendance reconciliation for the six flagged shifts",
+          "Approved leave / official duty / deputation record, where applicable",
+          "Emergency/casualty coverage confirmation",
+          "Medical Superintendent's consolidated response and action taken"
+        ]
       },
       MNHC_ABSENT: {
         subject: "Facility opening issue — CEO review draft",
@@ -2082,12 +2120,22 @@
       document.getElementById('letterRecipient').textContent = draft.recipient;
 
       const content = document.getElementById('letterContent');
-      content.innerHTML =
-        '<div class="letter-review-block"><h4>Issue summary</h4><p>' + draft.issue + '</p></div>' +
-        '<div class="letter-review-block"><h4>Required response if CEO approves this draft</h4><ul>' +
-        draft.response.map(function(item){ return '<li>' + item + '</li>'; }).join('') +
-        '</ul></div>' +
-        '<div class="letter-review-block"><h4>Closure evidence</h4><p>' + draft.closure + '</p></div>';
+      if (Array.isArray(draft.formalBody)) {
+        content.innerHTML =
+          '<div class="formal-draft-copy">' +
+          draft.formalBody.map(function(paragraph){ return '<p>' + paragraph + '</p>'; }).join('') +
+          '</div>' +
+          '<div class="letter-review-block formal-enclosures"><h4>Records to accompany the response</h4><ol>' +
+          (draft.enclosures || []).map(function(item){ return '<li>' + item + '</li>'; }).join('') +
+          '</ol></div>';
+      } else {
+        content.innerHTML =
+          '<div class="letter-review-block"><h4>Issue summary</h4><p>' + draft.issue + '</p></div>' +
+          '<div class="letter-review-block"><h4>Required response if CEO approves this draft</h4><ul>' +
+          draft.response.map(function(item){ return '<li>' + item + '</li>'; }).join('') +
+          '</ul></div>' +
+          '<div class="letter-review-block"><h4>Closure evidence</h4><p>' + draft.closure + '</p></div>';
+      }
       const refLabels = {
         CM_PREEMPTIVE_CHAUBARA: 'Demo draft — Emergency / Chaubara',
         CM_DOSSIER: 'Demo draft — Provincial brief',
@@ -2116,7 +2164,9 @@
       const activeType = document.getElementById('letterDispatchNo').dataset.draftType;
       const draft = demoDrafts[activeType];
       const body = draft
-        ? draft.issue + '\n\nRequired response:\n- ' + draft.response.join('\n- ') + '\n\nClosure evidence:\n' + draft.closure
+        ? (Array.isArray(draft.formalBody)
+            ? draft.formalBody.join('\n\n') + '\n\nRecords to accompany the response:\n- ' + (draft.enclosures || []).join('\n- ')
+            : draft.issue + '\n\nRequired response:\n- ' + draft.response.join('\n- ') + '\n\nClosure evidence:\n' + draft.closure)
         : document.getElementById('letterContent').textContent;
       const text = 'PROTOTYPE DEMO — NOT AN OFFICIAL DISPATCH\n' + subject + '\nTo: ' + recipient + '\n\n' + body;
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank', 'noopener');
